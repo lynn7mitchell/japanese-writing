@@ -6,7 +6,13 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      {katakana[0].kana}
+      {katakana.map(kana=>{
+
+        return (<div><div>{kana.kana}</div>
+                <div>{kana.roumaji}</div></div>)
+      })}
+      
+
     </div>
   );
 }
