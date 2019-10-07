@@ -36,7 +36,7 @@ require ('./config/passport')(passport)
 
 // Connect to the Mongo DB
 mongoose
-.connect("mongodb://heroku_vh4g6z2z:ag71nkrrbijsd9fnqcogam2slm@ds211268.mlab.com:11268/heroku_vh4g6z2z", { useNewUrlParser: true });
+.connect("mongodb://heroku_vv4dfv1h:jua2gkoppb1jb2soeqcbu7s3q9@ds331548.mlab.com:31548/heroku_vv4dfv1h", { useNewUrlParser: true });
 
 
 //Routes
