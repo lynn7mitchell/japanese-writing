@@ -44,11 +44,9 @@ module.exports = function (app) {
                         lastName: req.body.lastName,
                         email: req.body.email,
                         password: req.body.password,
-                        bio: req.body.bio,
-                        phoneNumber: req.body.phoneNumber,
-                        address: req.body.address,
-                        age: req.body.age,
-                        school: req.body.school,
+                        katakana: req.body.katakana,
+                        hirigana: req.body.hirigana,
+                        kanji: req.body.kanji
                     }
                     console.log(newUser)
                     bcrypt.genSalt(10, (err, salt) => {
