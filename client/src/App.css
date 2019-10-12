@@ -1,37 +1,21 @@
+/* LATO FONT FROM GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
 /* GENERAL */
-.subheader{    
-    font-weight: 500;
-    font-size: 35px;
-    color: #707070;
-    margin-left: 5px;
-    margin-top: 10px;
+* {
+  font-family: "Lato", sans-serif;
+  color: #fff;
 }
 
-/* EVENT PAGE */
-
-.add-event-icon{
-    position: absolute;
-    top: 7%;
-    right: 5%;
+body{
+    background: url("../src/images/main-background.png");
+    background-size: cover;
 }
 
-/* EVENT CARD */
-.event-grid{
-    position: relative;
-    display: flex;
-    align-items: center;
+h1{
+    font-weight: 300;
 }
-.expand{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    cursor: pointer;
-    
-}
-.selectedIcon{
-    transition: 1s;
-    transform: rotate(180deg)
-}
-.selectedCard{
-    
+
+h2{
+    font-weight: 300;
 }
