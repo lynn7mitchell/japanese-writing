@@ -7,15 +7,30 @@
   color: #fff;
 }
 
-body{
-    background: url("../src/images/main-background.png");
-    background-size: cover;
+body {
+  background: url("../src/images/main-background.png");
+  background-size: cover;
 }
 
-h1{
-    font-weight: 300;
+h1 {
+  font-weight: 300;
+  font-size: 74px;
+  margin-bottom: 5%;
 }
 
-h2{
-    font-weight: 300;
+h2 {
+  font-weight: 300;
+  font-size: 30px;
 }
+
+button {
+  box-sizing: border-box;
+  border: solid 0.5px #fff;
+  background: transparent;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 30px;
+  font-weight: 300;
+}
+
+/* HOME PAGE  */
