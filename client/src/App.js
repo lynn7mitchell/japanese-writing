@@ -6,7 +6,8 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import NoMatch from "./pages/NoMatch";
 import SignUp from "./pages/SignUp";
-import Home from "./pages/Home"
+import Home from "./pages/Home";
+import KatakanaDashboard from "./pages/KatakanaDashboard"
 
 export class App extends Component {
   render() {
@@ -19,6 +20,7 @@ export class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={Login}/>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/katakana-dashboard" component={KatakanaDashboard} />
             <Route exact component={NoMatch} />
           </Switch>
         </Router>

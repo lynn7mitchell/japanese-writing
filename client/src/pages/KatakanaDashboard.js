@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export class Dashboard extends Component {
+
+export class KatakanaDashboard extends Component {
   render() {
     const style = {
       main: {
@@ -11,25 +12,25 @@ export class Dashboard extends Component {
     };
     return (
       <div style={style.main}>
-        <h1>Choose A Writing System</h1>
+        <h1>Choose A Study Mode</h1>
         <div className="container">
           <div className="row">
             <Link to="/katakana-dashboard">
               <div className="col s4">
                 <h1>ア</h1>
-                <h2>Katakana</h2>
+                <h2>Study Chart</h2>
               </div>
             </Link>
             <Link to="/hiragana-dashboard">
               <div className="col s4">
                 <h1>あ</h1>
-                <h2>Hiragana</h2>
+                <h2>Multiple Choice</h2>
               </div>
             </Link>
             <Link to="/kanji-dashboard">
               <div className="col s4">
                 <h1>訪</h1>
-                <h2>Kanji</h2>
+                <h2>Fill in The Blank</h2>
               </div>
             </Link>
           </div>
@@ -39,4 +40,4 @@ export class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default KatakanaDashboard;
