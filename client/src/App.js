@@ -15,9 +15,9 @@ export class App extends Component {
         
         <Router>
           <Switch>
-            <Route exact path="/" component={Login} />
-            <Route exact path="/SignUp" component={SignUp} />
-            <Route exact path="/home" component={Home}/>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/login" component={Login}/>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <Route exact component={NoMatch} />
           </Switch>
