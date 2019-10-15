@@ -33,4 +33,10 @@ button {
   font-weight: 300;
 }
 
+.account-icon{
+  position: absolute;
+  top: 2vh;
+  right: 2vw;
+  font-size: 35px;
+}
 /* HOME PAGE  */
