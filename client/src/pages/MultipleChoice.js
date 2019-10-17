@@ -6,22 +6,41 @@ export class MultipleChoice extends Component {
   state = {
     language: this.props.history.location.state.language,
     languageArray: [],
-    answer: {}
+    answer: {},
+    choices: []
 
   };
 
   componentDidMount() {
       
-
-
     if (this.state.language === "katakana") {
       let languageArray = katakana;
       let answer = languageArray[Math.floor(Math.random() * languageArray.length)]
-      console.log("hello",answer)
+      let choices= [];
 
+      choices.push(answer)
+
+      for(let i = 0; i < 3; i++){
+        let choice;
+        const choiceFunction = () =>{
+            choice = languageArray[Math.floor(Math.random() * languageArray.length)]
+        }
+
+        choiceFunction()
+
+        if(choice === answer){
+            choiceFunction()
+        }else{
+            choices.push(choice)
+        }
+        
+    }
+            
       this.setState({
           languageArray,
-          answer
+          answer,
+          choices
+
       })
     } else if (this.state.language === "hiragana") {
       // arr = hiragana
