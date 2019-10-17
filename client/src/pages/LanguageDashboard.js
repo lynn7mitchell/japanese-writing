@@ -23,7 +23,12 @@ export class LanguageDashboard extends Component {
                 <h2>Study Chart</h2>
               </div>
             </Link>
-            <Link to="">
+            <Link to={{
+              pathname: '/multiple-choice',
+              state: {
+                language: this.state.language
+              }
+            }}>
               <div className="col s4">
                 <h2>Multiple Choice</h2>
               </div>

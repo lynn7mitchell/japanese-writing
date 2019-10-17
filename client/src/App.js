@@ -10,6 +10,7 @@ import Settings from "./pages/Settings"
 
 import Home from "./pages/Home";
 import LanguageDashboard from "./pages/LanguageDashboard"
+import MultipleChoice from "./pages/MultipleChoice";
 
 export class App extends Component {
   render() {
@@ -24,6 +25,7 @@ export class App extends Component {
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/settings" component={Settings} />
             <PrivateRoute exact path="/language-dashboard" component={LanguageDashboard} />
+            <PrivateRoute exact path="/multiple-choice" component={MultipleChoice} />
             <Route exact component={NoMatch} />
           </Switch>
         </Router>
