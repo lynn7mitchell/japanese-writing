@@ -15,13 +15,23 @@ export class Dashboard extends Component {
         <h1>Choose A Writing System</h1>
         <div className="container">
           <div className="row">
-            <Link to="/katakana-dashboard">
+          <Link to={{
+                  pathname: '/language-dashboard',
+                  state: {
+                    language: "katakana"
+                  }
+                }}>
               <div className="col s4">
                 <h1>ア</h1>
                 <h2>Katakana</h2>
               </div>
             </Link>
-            <Link to="/hiragana-dashboard">
+            <Link to={{
+                  pathname: '/language-dashboard',
+                  state: {
+                    language: "hiragana"
+                  }
+                }}>
               <div className="col s4">
                 <h1>あ</h1>
                 <h2>Hiragana</h2>

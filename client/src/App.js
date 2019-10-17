@@ -9,7 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings"
 
 import Home from "./pages/Home";
-import KatakanaDashboard from "./pages/KatakanaDashboard"
+import LanguageDashboard from "./pages/LanguageDashboard"
 
 export class App extends Component {
   render() {
@@ -23,7 +23,7 @@ export class App extends Component {
             <Route exact path="/login" component={Login}/>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/settings" component={Settings} />
-            <PrivateRoute exact path="/katakana-dashboard" component={KatakanaDashboard} />
+            <PrivateRoute exact path="/language-dashboard" component={LanguageDashboard} />
             <Route exact component={NoMatch} />
           </Switch>
         </Router>

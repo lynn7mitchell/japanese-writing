@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 
-export class KatakanaDashboard extends Component {
+export class LanguageDashboard extends Component {
+  state={
+    language: this.props.history.location.state.language
+  }
   render() {
     const style = {
       main: {
@@ -15,21 +18,18 @@ export class KatakanaDashboard extends Component {
         <h1>Choose A Study Mode</h1>
         <div className="container">
           <div className="row">
-            <Link to="/katakana-dashboard">
+            <Link to="">
               <div className="col s4">
-                <h1>ア</h1>
                 <h2>Study Chart</h2>
               </div>
             </Link>
-            <Link to="/hiragana-dashboard">
+            <Link to="">
               <div className="col s4">
-                <h1>あ</h1>
                 <h2>Multiple Choice</h2>
               </div>
             </Link>
-            <Link to="/kanji-dashboard">
+            <Link to="">
               <div className="col s4">
-                <h1>訪</h1>
                 <h2>Fill in The Blank</h2>
               </div>
             </Link>
@@ -40,4 +40,4 @@ export class KatakanaDashboard extends Component {
   }
 }
 
-export default KatakanaDashboard;
+export default LanguageDashboard;
