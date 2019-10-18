@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import katakana from "../katakana.json";
-// import hiragana from "../hiragana.json"
+import hiragana from "../hiragana.json"
 
 export class MultipleChoiceKana extends Component {
   state = {
@@ -61,7 +61,53 @@ export class MultipleChoiceKana extends Component {
         listedAnswers
       });
     } else if (this.state.language === "hiragana") {
-      // arr = hiragana
+      let languageArray = hiragana;
+      let answer =
+        languageArray[Math.floor(Math.random() * languageArray.length)];
+      let choices = [];
+
+      choices.push(answer);
+
+      for (let i = 0; i < 3; i++) {
+        let choice;
+        const choiceFunction = () => {
+          choice =
+            languageArray[Math.floor(Math.random() * languageArray.length)];
+        };
+
+        choiceFunction();
+
+        if (choice === answer) {
+          choiceFunction();
+        } else {
+          choices.push(choice);
+        }
+      }
+
+      this.setState({
+        languageArray,
+        answer,
+        choices
+      });
+
+      //   const { language, languageArray, answer, choices } = this.state;
+      let listedAnswers = [];
+
+      // Answer to my problem was found at
+      // https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
+      // then modified to add to the listedAnswers array before splicing
+      for (var i = choices.length - 1; i >= 0; i--) {
+        let index = Math.floor(Math.random() * choices.length);
+        listedAnswers.push(choices[index]);
+        choices.splice(index, 1);
+        //   console.log(choices);
+      }
+
+      console.log(listedAnswers);
+
+      this.setState({
+        listedAnswers
+      });
     }
   }
   render() {
@@ -76,19 +122,31 @@ export class MultipleChoiceKana extends Component {
         <h1>{this.state.answer.roumaji}</h1>
         <div className="container">
           <div className="row">
-            <div className="col s4 container-outline" name={this.state.listedAnswers[0].kana}>
-                {console.log(this.state.listedAnswers)}
+            <div
+              className="col s4 container-outline"
+              name={this.state.listedAnswers[0].kana}
+            >
+              {console.log(this.state.listedAnswers)}
               {this.state.listedAnswers[0].kana}
             </div>
-            <div className="col s4 container-outline" name={this.state.listedAnswers[1].kana}>
+            <div
+              className="col s4 container-outline"
+              name={this.state.listedAnswers[1].kana}
+            >
               {this.state.listedAnswers[1].kana}
             </div>
           </div>
           <div className="row">
-            <div className="col s4 container-outline" name={this.state.listedAnswers[2].kana}>
+            <div
+              className="col s4 container-outline"
+              name={this.state.listedAnswers[2].kana}
+            >
               {this.state.listedAnswers[2].kana}
             </div>
-            <div className="col s4 container-outline" name={this.state.listedAnswers[3].kana}>
+            <div
+              className="col s4 container-outline"
+              name={this.state.listedAnswers[3].kana}
+            >
               {this.state.listedAnswers[3].kana}
             </div>
           </div>
