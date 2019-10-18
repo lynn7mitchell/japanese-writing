@@ -8,45 +8,57 @@ export class MultipleChoice extends Component {
     languageArray: [],
     answer: {},
     choices: []
-
   };
 
   componentDidMount() {
-      
     if (this.state.language === "katakana") {
       let languageArray = katakana;
-      let answer = languageArray[Math.floor(Math.random() * languageArray.length)]
-      let choices= [];
+      let answer =
+        languageArray[Math.floor(Math.random() * languageArray.length)];
+      let choices = [];
 
-      choices.push(answer)
+      choices.push(answer);
 
-      for(let i = 0; i < 3; i++){
+      for (let i = 0; i < 3; i++) {
         let choice;
-        const choiceFunction = () =>{
-            choice = languageArray[Math.floor(Math.random() * languageArray.length)]
-        }
+        const choiceFunction = () => {
+          choice =
+            languageArray[Math.floor(Math.random() * languageArray.length)];
+        };
 
-        choiceFunction()
+        choiceFunction();
 
-        if(choice === answer){
-            choiceFunction()
-        }else{
-            choices.push(choice)
+        if (choice === answer) {
+          choiceFunction();
+        } else {
+          choices.push(choice);
         }
-        
-    }
-            
+      }
+
       this.setState({
-          languageArray,
-          answer,
-          choices
-
-      })
+        languageArray,
+        answer,
+        choices
+      });
     } else if (this.state.language === "hiragana") {
       // arr = hiragana
     }
   }
   render() {
+    const { language, languageArray, answer, choices } = this.state;
+    let listedAnswers = [];
+
+    // Answer to my problem was found at
+    // https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
+    // then modified to add to the listedAnswers array before splicing
+    for (var i = choices.length - 1; i >= 0; i--) {
+      let index = Math.floor(Math.random() * choices.length);
+      listedAnswers.push(choices[index]);
+      choices.splice(index, 1);
+      console.log(choices);
+    }
+
+    console.log(listedAnswers);
     const style = {
       main: {
         textAlign: "center",
@@ -55,15 +67,15 @@ export class MultipleChoice extends Component {
     };
     return (
       <div style={style.main}>
-        <h1>A</h1>
+        <h1>{answer.kana}</h1>
         <div className="container">
           <div className="row">
-            <div className="col s4 container-outline">A</div>
-            <div className="col s4 container-outline">A</div>
+            <div className="col s4 container-outline"></div>
+            <div className="col s4 container-outline"></div>
           </div>
           <div className="row">
-            <div className="col s4 container-outline">A</div>
-            <div className="col s4 container-outline">A</div>
+            <div className="col s4 container-outline"></div>
+            <div className="col s4 container-outline"></div>
           </div>
         </div>
       </div>
