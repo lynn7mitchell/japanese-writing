@@ -44,7 +44,7 @@ export class MultipleChoice extends Component {
               }}
             >
               <div className="col s4">
-                <h2>Katakana</h2>
+                <h2>Kana</h2>
               </div>
             </Link>
             <Link to="">

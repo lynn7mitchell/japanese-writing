@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import katakana from "../katakana.json";
-// import hiragana from "../hiragana.json"
+import hiragana from "../hiragana.json"
 
 export class MultipleChoiceKana extends Component {
   state = {
@@ -10,6 +10,8 @@ export class MultipleChoiceKana extends Component {
     choices: [],
     listedAnswers: []
   };
+
+  
 
   componentWillMount() {
     if (this.state.language === "katakana") {
@@ -60,10 +62,58 @@ export class MultipleChoiceKana extends Component {
       this.setState({
         listedAnswers
       });
+      
     } else if (this.state.language === "hiragana") {
-      // arr = hiragana
-    }
+      let languageArray = hiragana;
+      let answer =
+        languageArray[Math.floor(Math.random() * languageArray.length)];
+      let choices = [];
+
+      choices.push(answer);
+
+      for (let i = 0; i < 3; i++) {
+        let choice;
+        const choiceFunction = () => {
+          choice =
+            languageArray[Math.floor(Math.random() * languageArray.length)];
+        };
+
+        choiceFunction();
+
+        if (choice === answer) {
+          choiceFunction();
+        } else {
+          choices.push(choice);
+        }
+      }
+
+      this.setState({
+        languageArray,
+        answer,
+        choices
+      });
+
+      //   const { language, languageArray, answer, choices } = this.state;
+      let listedAnswers = [];
+
+      // Answer to my problem was found at
+      // https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
+      // then modified to add to the listedAnswers array before splicing
+      for (var i = choices.length - 1; i >= 0; i--) {
+        let index = Math.floor(Math.random() * choices.length);
+        listedAnswers.push(choices[index]);
+        choices.splice(index, 1);
+        //   console.log(choices);
+      }
+
+      console.log(listedAnswers);
+
+      this.setState({
+        listedAnswers
+      });    }
   }
+
+  
   render() {
     const style = {
       main: {
