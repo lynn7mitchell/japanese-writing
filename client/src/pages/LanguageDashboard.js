@@ -33,7 +33,12 @@ export class LanguageDashboard extends Component {
                 <h2>Multiple Choice</h2>
               </div>
             </Link>
-            <Link to="">
+            <Link to={{
+              pathname: '/fill-in-the-blank-kana',
+              state: {
+                language: this.state.language
+              }
+            }}>
               <div className="col s4">
                 <h2>Fill in The Blank</h2>
               </div>

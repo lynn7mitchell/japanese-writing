@@ -10,7 +10,6 @@ export class MultipleChoice extends Component {
     listedAnswers: []
   };
 
-  componentWillMount() {}
   render() {
     const style = {
       main: {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import katakana from "../katakana.json";
-import hiragana from "../hiragana.json"
+import hiragana from "../hiragana.json";
 
 export class MultipleChoiceKana extends Component {
   state = {

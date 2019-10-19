@@ -21,7 +21,7 @@ export class Dashboard extends Component {
                     language: "katakana"
                   }
                 }}>
-              <div className="col s4">
+              <div className="col s6">
                 <h1>ア</h1>
                 <h2>Katakana</h2>
               </div>
@@ -32,17 +32,17 @@ export class Dashboard extends Component {
                     language: "hiragana"
                   }
                 }}>
-              <div className="col s4">
+              <div className="col s6">
                 <h1>あ</h1>
                 <h2>Hiragana</h2>
               </div>
             </Link>
-            <Link to="/kanji-dashboard">
+            {/* <Link to="/kanji-dashboard">
               <div className="col s4">
                 <h1>訪</h1>
                 <h2>Kanji</h2>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

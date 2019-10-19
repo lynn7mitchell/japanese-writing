@@ -13,6 +13,7 @@ import LanguageDashboard from "./pages/LanguageDashboard"
 import MultipleChoice from "./pages/MultipleChoice";
 import MultipleChoiceKana from "./pages/MultipleChoiceKana";
 import MultipleChoiceRoumaji from "./pages/MultipleChoiceRoumaji";
+import FillInTheBlankKana from "./pages/FillInTheBlankKana";
 
 export class App extends Component {
   render() {
@@ -30,6 +31,7 @@ export class App extends Component {
             <PrivateRoute exact path="/multiple-choice" component={MultipleChoice} />
             <PrivateRoute exact path="/multiple-choice-kana" component={MultipleChoiceKana} />
             <PrivateRoute exact path="/multiple-choice-roumaji" component={MultipleChoiceRoumaji} />
+            <PrivateRoute exact path="/fill-in-the-blank-kana" component={FillInTheBlankKana} />
             <Route exact component={NoMatch} />
           </Switch>
         </Router>
