@@ -92,6 +92,8 @@ export class FillInTheBlankKana extends Component {
         .catch(err => console.log(err))
     }
     
+    window.location.reload(false);
+
     }
   render() {
     const style = {
