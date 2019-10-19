@@ -33,7 +33,7 @@ var UserSchema = new Schema({
             type: Boolean
         }
     },
-    hirigana:{
+    hiragana:{
         multipleChoice:{
             highest:{
                 type: Number

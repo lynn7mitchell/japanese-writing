@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import axios from "axios"
 import katakana from "../katakana.json";
 import hiragana from "../hiragana.json";
-import { userInfo } from "os";
 
 export class FillInTheBlankKana extends Component {
   state = {
     language: this.props.history.location.state.language,
     languageArray: [],
     answer: {},
-    userAnswer: ""
+    userAnswer: "",
+    streak: 0
   };
 
   componentWillMount() {
@@ -16,6 +17,7 @@ export class FillInTheBlankKana extends Component {
       let languageArray = katakana;
       let answer =
         languageArray[Math.floor(Math.random() * languageArray.length)];
+
 
       this.setState({
         languageArray,
@@ -36,15 +38,32 @@ export class FillInTheBlankKana extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+
+
   };
  onSubmit = e => {
      e.preventDefault()
+
     
      if(this.state.userAnswer.toLowerCase() === this.state.answer.roumaji )  {
          console.log("Your answer " + this.state.userAnswer , "correct answer " + this.state.answer.roumaji, "correct")
+         let newStreak = this.state.streak += 1
+         this.setState({
+            streak: newStreak
+         })
+         console.log(this.state.streak)
      }else{
         console.log("Your answer " + this.state.userAnswer , "correct answer " + this.state.answer.roumaji, "false")
+         this.setState({
+            streak: 0
+         })
+         console.log(this.state.streak)
+
     }
+
+    axios.put("api/user", this.state.streak)
+    .then(res => console.log("worked"))
+    .catch(err => console.log(err))
     }
   render() {
     const style = {

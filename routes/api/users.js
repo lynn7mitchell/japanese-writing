@@ -45,7 +45,7 @@ module.exports = function (app) {
                         email: req.body.email,
                         password: req.body.password,
                         katakana: req.body.katakana,
-                        hirigana: req.body.hirigana,
+                        hirigana: req.body.hiragana,
                         kanji: req.body.kanji
                     }
                     console.log(newUser)
