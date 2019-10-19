@@ -9,8 +9,10 @@ export class FillInTheBlankKana extends Component {
     language: this.props.history.location.state.language,
     languageArray: [],
     answer: {},
+    user: {},
     userAnswer: "",
-    streak: 0
+    streak: 0,
+    highestStreak: 0
   };
 
   componentWillMount() {
@@ -24,7 +26,8 @@ export class FillInTheBlankKana extends Component {
       .get("api/user")
       .then(response => {
         this.setState({
-          user: response.data
+          user: response.data,
+          highestStreak: response.data.katakana.fillInTheBlank.highest
         });
       })
       .catch(err => console.log(err.response));
@@ -37,7 +40,8 @@ export class FillInTheBlankKana extends Component {
 
       this.setState({
         languageArray,
-        answer
+        answer,
+        // heightStreak: this.state.user.katakana.fillInTheBlank.heightStreak
       });
     } else if (this.state.language === "hiragana") {
       let languageArray = hiragana;
@@ -50,6 +54,7 @@ export class FillInTheBlankKana extends Component {
       });
     }
   }
+
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -92,6 +97,7 @@ export class FillInTheBlankKana extends Component {
         .catch(err => console.log(err))
     }
     
+    // reloads the page
     window.location.reload(false);
 
     }
@@ -104,6 +110,7 @@ export class FillInTheBlankKana extends Component {
     };
     return (
       <div style={style.main}>
+          <h3>{this.state.highestStreak}</h3>
         <h1>{this.state.answer.kana}</h1>
         <div className="container">
           <form onSubmit={this.onSubmit}>
