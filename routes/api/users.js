@@ -82,7 +82,7 @@ module.exports = function (app) {
         console.log(email)
         db.User.findOne({ email: email })
             .then(user => {
-                console.log("********************",user)
+                // console.log("********************",user)
                 if (!user) {
                     return res.status(404).json({ user: "User not found" })
                 }
@@ -91,10 +91,10 @@ module.exports = function (app) {
                 bcrypt.compare(password, user.password)
                     .then(isMatch => {
                         if (isMatch) {
-                            console.log("bycrypt user", user._id)
+                            // console.log("bycrypt user", user._id)
                             db.User.findById(user._id)
                                 .then(user => {
-                                    console.log("###############", user)
+                                    // console.log("###############", user)
                                     const payload = {
                                         id: user.id,
                                         email: user.email,
@@ -135,7 +135,7 @@ module.exports = function (app) {
     // PUT
 
     app.put('/api/user', passport.authenticate('jwt', { session: false }), (req, res) => {
-        console.log(req.body.firstName)
+        console.log("put route", req.body)
         db.User.findByIdAndUpdate(req.user.id, {$set:req.body})
         .then(user => {
             res.status(200).json({

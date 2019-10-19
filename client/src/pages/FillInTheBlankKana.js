@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios"
 import katakana from "../katakana.json";
 import hiragana from "../hiragana.json";
@@ -13,6 +14,21 @@ export class FillInTheBlankKana extends Component {
   };
 
   componentWillMount() {
+    const token = localStorage.getItem("example-app");
+
+    if (token) {
+      setAuthToken(token);
+    }
+
+    axios
+      .get("api/user")
+      .then(response => {
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(err => console.log(err.response));
+
     if (this.state.language === "katakana") {
       let languageArray = katakana;
       let answer =
@@ -61,9 +77,21 @@ export class FillInTheBlankKana extends Component {
 
     }
 
-    axios.put("api/user", this.state.streak)
-    .then(res => console.log("worked"))
-    .catch(err => console.log(err))
+
+    let updatedUser = {
+        katakana:{
+            fillInTheBlank:{
+                highest:this.state.streak
+            }
+        },
+    }
+
+    if(this.state.streak > this.state.user.katakana.fillInTheBlank.highest){
+        axios.put("api/user", updatedUser)
+        .then(res => console.log("worked"))
+        .catch(err => console.log(err))
+    }
+    
     }
   render() {
     const style = {
