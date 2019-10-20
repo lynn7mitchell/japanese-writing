@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import setAuthToken from "../utils/setAuthtoken";
-import axios from "axios"
+import axios from "axios";
 import katakana from "../katakana.json";
 import hiragana from "../hiragana.json";
 
@@ -11,7 +11,7 @@ export class FillInTheBlankKana extends Component {
     answer: {},
     user: {},
     userAnswer: "",
-    streak: 0,
+    currentStreak: 0,
     highestStreak: 0
   };
 
@@ -37,10 +37,9 @@ export class FillInTheBlankKana extends Component {
       let answer =
         languageArray[Math.floor(Math.random() * languageArray.length)];
 
-
       this.setState({
         languageArray,
-        answer,
+        answer
         // heightStreak: this.state.user.katakana.fillInTheBlank.heightStreak
       });
     } else if (this.state.language === "hiragana") {
@@ -59,48 +58,61 @@ export class FillInTheBlankKana extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
-
-
   };
- onSubmit = e => {
-     e.preventDefault()
+  onSubmit = e => {
+    e.preventDefault();
 
-    
-     if(this.state.userAnswer.toLowerCase() === this.state.answer.roumaji )  {
-         console.log("Your answer " + this.state.userAnswer , "correct answer " + this.state.answer.roumaji, "correct")
-         let newStreak = this.state.streak += 1
-         this.setState({
-            streak: newStreak
-         })
-         console.log(this.state.streak)
-     }else{
-        console.log("Your answer " + this.state.userAnswer , "correct answer " + this.state.answer.roumaji, "false")
-         this.setState({
-            streak: 0
-         })
-         console.log(this.state.streak)
+    if (this.state.userAnswer.toLowerCase() === this.state.answer.roumaji) {
+      console.log(
+        "Your answer " + this.state.userAnswer,
+        "correct answer " + this.state.answer.roumaji,
+        "correct"
+      );
+      let newStreak = (this.state.currentStreak += 1);
 
-    }
+      if (newStreak > this.state.highestStreak) {
+        this.setState({
+          highestStreak: newStreak
+        });
 
-
-    let updatedUser = {
-        katakana:{
-            fillInTheBlank:{
-                highest:this.state.streak
+        let updatedUser = {
+          katakana: {
+            fillInTheBlank: {
+              highest: this.state.highestStreak
             }
-        },
+          }
+        };
+
+        if (
+          this.state.highestStreak >
+          this.state.user.katakana.fillInTheBlank.highest
+        ) {
+          axios
+            .put("api/user", updatedUser)
+            .then(res => console.log("worked"))
+            .catch(err => console.log(err));
+        }
+      }
+
+      this.setState({
+        currentStreak: newStreak
+      });
+      console.log(this.state.streak);
+    } else {
+      console.log(
+        "Your answer " + this.state.userAnswer,
+        "correct answer " + this.state.answer.roumaji,
+        "false"
+      );
+      this.setState({
+        streak: 0
+      });
+      console.log(this.state.streak);
     }
 
-    if(this.state.streak > this.state.user.katakana.fillInTheBlank.highest){
-        axios.put("api/user", updatedUser)
-        .then(res => console.log("worked"))
-        .catch(err => console.log(err))
-    }
-    
     // reloads the page
     window.location.reload(false);
-
-    }
+  };
   render() {
     const style = {
       main: {
@@ -110,7 +122,10 @@ export class FillInTheBlankKana extends Component {
     };
     return (
       <div style={style.main}>
-          <h3>{this.state.highestStreak}</h3>
+        <div className="streak">
+          <h3>Highest Streak: {this.state.highestStreak}</h3>
+          <h3>Current Streak: {this.state.currentStreak}</h3>
+        </div>
         <h1>{this.state.answer.kana}</h1>
         <div className="container">
           <form onSubmit={this.onSubmit}>
@@ -126,7 +141,9 @@ export class FillInTheBlankKana extends Component {
                 <label className="active" for="user-guess">
                   Your Answer
                 </label>
-                <button style={style.button} type="submit">Submit</button>
+                <button style={style.button} type="submit">
+                  Submit
+                </button>
               </div>
             </div>
           </form>
