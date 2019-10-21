@@ -27,11 +27,13 @@ export class FillInTheBlankKana extends Component {
     axios
       .get("api/user")
       .then(response => {
+        console.log(response.data)
         this.setState({
           user: response.data,
           currentStreak: response.data[this.state.language].fillInTheBlank.current,
           highestStreak: response.data[this.state.language].fillInTheBlank.highest
         });
+        console.log(this.state.highestStreak)
       })
       .catch(err => console.log(err.response));
 
@@ -92,6 +94,7 @@ export class FillInTheBlankKana extends Component {
       let updatedUser = {
         katakana: {
           fillInTheBlank: {
+            highest: this.state.highestStreak,
             current: this.state.currentStreak,
           }
         }
@@ -106,7 +109,6 @@ export class FillInTheBlankKana extends Component {
 
         //sets state to highest streak
         this.setState({
-          currentStreak: newStreak,
           highestStreak: newStreak
         });
 
@@ -115,7 +117,6 @@ export class FillInTheBlankKana extends Component {
         updatedUser = {
           katakana: {
             fillInTheBlank: {
-              current: this.state.currentStreak,
               highest: this.state.highestStreak
             }
           }
@@ -128,7 +129,7 @@ export class FillInTheBlankKana extends Component {
         ) {
           axios
             .put("api/user", updatedUser)
-            .then(res => console.log("worked"))
+            .then(res => console.log(updatedUser))
             .catch(err => console.log(err));
         }
       }
@@ -142,8 +143,22 @@ export class FillInTheBlankKana extends Component {
 
       //Sets current streak to 0
       this.setState({
-        streak: 0
+        currentStreak: 0
       });
+
+      let updatedUser = {
+        katakana: {
+          fillInTheBlank: {
+            highest: this.state.highestStreak,
+            current: 0,
+          }
+        }
+      };
+
+      axios
+            .put("api/user", updatedUser)
+            .then(res => console.log("wrong"))
+            .catch(err => console.log(err));
       console.log(this.state.streak);
     }
 
