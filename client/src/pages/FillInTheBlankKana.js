@@ -94,7 +94,6 @@ export class FillInTheBlankKana extends Component {
       let updatedUser = {
         katakana: {
           fillInTheBlank: {
-            highest: this.state.highestStreak,
             current: this.state.currentStreak,
           }
         }
@@ -105,7 +104,7 @@ export class FillInTheBlankKana extends Component {
             .then(res => console.log("worked"))
             .catch(err => console.log(err));
       //Checks if the streak is higher than the highest streak
-      if (newStreak > this.state.highestStreak) {
+      if (newStreak > this.state.user[this.state.language].fillInTheBlank.highest) {
 
         //sets state to highest streak
         this.setState({
@@ -117,21 +116,19 @@ export class FillInTheBlankKana extends Component {
         updatedUser = {
           katakana: {
             fillInTheBlank: {
-              highest: this.state.highestStreak
+              highest: newStreak,
+              current: this.state.currentStreak
             }
           }
         };
 
         //if the highest streak is more than the highest streak in the database (which it already should be) it sends a put request
-        if (
-          this.state.highestStreak >
-          this.state.user.katakana.fillInTheBlank.highest
-        ) {
+        
           axios
             .put("api/user", updatedUser)
-            .then(res => console.log(updatedUser))
+            .then(res => console.log("highest", updatedUser))
             .catch(err => console.log(err));
-        }
+        
       }
 
       // //Sets the current streak with the updated streak (not highest just current)
