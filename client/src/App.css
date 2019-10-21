@@ -8,8 +8,12 @@
 }
 
 body {
-  background: url("../src/images/main-background.png");
+  background: url("../src/images/main-background.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+
   
 }
 
@@ -55,3 +59,8 @@ button {
   right: 0;
 }
 
+@media only screen and (max-width: 600px) {
+  body {
+    
+  }
+}
