@@ -29,7 +29,7 @@ export class FillInTheBlankKana extends Component {
       .then(response => {
         this.setState({
           user: response.data,
-          highestStreak: response.data.katakana.fillInTheBlank.highest
+          highestStreak: response.data[this.state.language].fillInTheBlank.highest
         });
       })
       .catch(err => console.log(err.response));
