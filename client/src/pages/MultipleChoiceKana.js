@@ -136,6 +136,7 @@ export class MultipleChoiceKana extends Component {
   }
 
   onClick = e => {
+
     let userAnswer = e.target.innerHTML;
 
     if (userAnswer === this.state.answer.roumaji) {
@@ -165,7 +166,7 @@ export class MultipleChoiceKana extends Component {
         console.log(this.currentStreak);
         //New variable to send the new streak information with a put
         let updatedUser = {
-          katakana: {
+          [this.state.language]: {
             multipleChoice: {
               highest: newStreak,
               current: this.state.currentStreak
@@ -181,13 +182,15 @@ export class MultipleChoiceKana extends Component {
           .catch(err => console.log(err));
       } else {
         let updatedUser = {
-          katakana: {
+          [this.state.language]: {
             multipleChoice: {
               highest: this.state.highestStreak,
               current: this.state.currentStreak
             }
           }
         };
+        console.log("thisone", updatedUser)
+
 
         axios
           .put("api/user", updatedUser)
@@ -204,13 +207,14 @@ export class MultipleChoiceKana extends Component {
       });
 
       let updatedUser = {
-        katakana: {
+        [this.state.language]: {
           multipleChoice: {
             highest: this.state.highestStreak,
             current: 0
           }
         }
       };
+      console.log("thisone", updatedUser)
 
       axios
         .put("api/user", updatedUser)
