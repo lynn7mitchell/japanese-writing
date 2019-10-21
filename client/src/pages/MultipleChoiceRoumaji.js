@@ -50,6 +50,7 @@ export class MultipleChoiceKana extends Component {
         choiceFunction();
 
         if (choice === answer) {
+          i--
           choiceFunction();
         } else {
           choices.push(choice);
@@ -68,7 +69,7 @@ export class MultipleChoiceKana extends Component {
       // Answer to my problem was found at
       // https://stackoverflow.com/questions/36069870/how-to-remove-random-item-from-array-and-then-remove-it-from-array-until-array-i
       // then modified to add to the listedAnswers array before splicing
-      for (var i = choices.length - 1; i >= 0; i--) {
+      for (var i = choices.length - 1; i > -1; i--) {
         let index = Math.floor(Math.random() * choices.length);
         listedAnswers.push(choices[index]);
         choices.splice(index, 1);
@@ -265,7 +266,6 @@ export class MultipleChoiceKana extends Component {
               className="col s4 container-outline"
               name={this.state.listedAnswers[3].kana}
               onClick={this.onClick}
-
             >
               {this.state.listedAnswers[3].kana}
             </div>
