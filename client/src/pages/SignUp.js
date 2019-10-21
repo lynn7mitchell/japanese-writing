@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export class SignUp extends Component {
@@ -68,7 +69,7 @@ export class SignUp extends Component {
     };
     return (
       <div>
-        {/* <img src={Logo} style={styles.logo} /> */}
+        <Link to={{pathname:"home"}}><i className="material-icons back-button">arrow_back</i></Link>
         <div className="container">
           <div className="row">
             <form className="col s12" onSubmit={this.onSubmit}>

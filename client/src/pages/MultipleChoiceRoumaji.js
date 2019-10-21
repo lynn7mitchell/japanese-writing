@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 import katakana from "../katakana.json";
@@ -23,11 +24,13 @@ export class MultipleChoiceKana extends Component {
     axios
       .get("api/user")
       .then(response => {
-        console.log(response.data)
+        console.log(response.data);
         this.setState({
           user: response.data,
-          highestStreak: response.data[this.state.language].multipleChoice.highest,
-          currentStreak: response.data[this.state.language].multipleChoice.current,
+          highestStreak:
+            response.data[this.state.language].multipleChoice.highest,
+          currentStreak:
+            response.data[this.state.language].multipleChoice.current
         });
       })
       .catch(err => console.log(err.response));
@@ -50,7 +53,7 @@ export class MultipleChoiceKana extends Component {
         choiceFunction();
 
         if (choice === answer) {
-          i--
+          i--;
           choiceFunction();
         } else {
           choices.push(choice);
@@ -228,6 +231,15 @@ export class MultipleChoiceKana extends Component {
     };
     return (
       <div style={style.main}>
+        <Link
+          to={{
+            pathname: "multiple-choice",
+            state: { language: this.state.language }
+          }}
+        >
+          <i className="material-icons back-button">arrow_back</i>
+        </Link>
+
         <div className="streak">
           <h3>Highest Streak: {this.state.highestStreak}</h3>
           <h3>Current Streak: {this.state.currentStreak}</h3>
@@ -239,7 +251,6 @@ export class MultipleChoiceKana extends Component {
               className="col s4 container-outline"
               name={this.state.listedAnswers[0].kana}
               onClick={this.onClick}
-
             >
               {console.log(this.state.listedAnswers)}
               {this.state.listedAnswers[0].kana}
@@ -248,7 +259,6 @@ export class MultipleChoiceKana extends Component {
               className="col s4 container-outline"
               name={this.state.listedAnswers[1].kana}
               onClick={this.onClick}
-
             >
               {this.state.listedAnswers[1].kana}
             </div>
@@ -258,7 +268,6 @@ export class MultipleChoiceKana extends Component {
               className="col s4 container-outline"
               name={this.state.listedAnswers[2].kana}
               onClick={this.onClick}
-
             >
               {this.state.listedAnswers[2].kana}
             </div>

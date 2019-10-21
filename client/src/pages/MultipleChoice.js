@@ -19,10 +19,19 @@ export class MultipleChoice extends Component {
     };
     return (
       <div style={style.main}>
+        <Link
+          to={{
+            pathname: "language-dashboard",
+            state: { language: this.state.language }
+          }}
+        >
+          <i className="material-icons back-button">arrow_back</i>
+        </Link>
+
         <h1>Multiple Choice</h1>
         <div className="container">
           <div className="row">
-          <Link
+            <Link
               to={{
                 pathname: "/multiple-choice-roumaji",
                 state: {

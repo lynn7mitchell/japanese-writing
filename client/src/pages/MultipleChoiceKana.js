@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 import katakana from "../katakana.json";
@@ -235,11 +236,19 @@ export class MultipleChoiceKana extends Component {
       },
       multipleChoice: {
         padding: 10,
-        marginBottom: 20,
+        marginBottom: 20
       }
     };
     return (
       <div style={style.main}>
+        <Link
+          to={{
+            pathname: "multiple-choice",
+            state: { language: this.state.language }
+          }}
+        >
+          <i className="material-icons back-button">arrow_back</i>
+        </Link>
         <div className="streak">
           <h3>Highest Streak: {this.state.highestStreak}</h3>
           <h3>Current Streak: {this.state.currentStreak}</h3>
@@ -248,7 +257,7 @@ export class MultipleChoiceKana extends Component {
         <div className="container">
           <div className="row">
             <div
-              className="col m4 s12 container-outline"
+              className="col m4 s12 offset-m2 container-outline"
               style={style.multipleChoice}
               name={this.state.listedAnswers[0].roumaji}
               onClick={this.onClick}
@@ -267,7 +276,7 @@ export class MultipleChoiceKana extends Component {
           </div>
           <div className="row">
             <div
-              className="col m4 s12 container-outline"
+              className="col m4 s12 offset-m2 container-outline"
               style={style.multipleChoice}
               name={this.state.listedAnswers[2].roumaji}
               onClick={this.onClick}

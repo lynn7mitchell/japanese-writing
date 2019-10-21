@@ -39,6 +39,12 @@ button {
   margin-top: 10px;
 }
 
+.back-button{
+  position: absolute;
+  top: 2vh;
+  left: 2vh;
+}
+
 .account-icon{
   position: absolute;
   top: 2vh;
