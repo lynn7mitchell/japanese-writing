@@ -10,6 +10,7 @@
 body {
   background: url("../src/images/main-background.png");
   background-size: cover;
+  
 }
 
 h1 {
@@ -31,6 +32,7 @@ button {
   padding: 8px;
   font-size: 30px;
   font-weight: 300;
+  margin-top: 10px;
 }
 
 .account-icon{
