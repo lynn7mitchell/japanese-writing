@@ -29,6 +29,7 @@ export class FillInTheBlankKana extends Component {
       .then(response => {
         this.setState({
           user: response.data,
+          currentStreak: response.data[this.state.language].fillInTheBlank.current,
           highestStreak: response.data[this.state.language].fillInTheBlank.highest
         });
       })
@@ -79,19 +80,42 @@ export class FillInTheBlankKana extends Component {
 
       // Variable that adds 1 to the current streak
       let newStreak = (this.state.currentStreak += 1);
+      console.log(newStreak)
+      console.log(this.state)
+      console.log(this.state.userAnswer)
+      console.log(this.state.answer)
+      //sets state to current streak
+      this.setState({
+        currentStreak: newStreak
+      });
 
+      let updatedUser = {
+        katakana: {
+          fillInTheBlank: {
+            current: this.state.currentStreak,
+          }
+        }
+      };
+
+      axios
+            .put("api/user", updatedUser)
+            .then(res => console.log("worked"))
+            .catch(err => console.log(err));
       //Checks if the streak is higher than the highest streak
       if (newStreak > this.state.highestStreak) {
 
         //sets state to highest streak
         this.setState({
+          currentStreak: newStreak,
           highestStreak: newStreak
         });
 
+        console.log(this.currentStreak)
         //New variable to send the new streak information with a put 
-        let updatedUser = {
+        updatedUser = {
           katakana: {
             fillInTheBlank: {
+              current: this.state.currentStreak,
               highest: this.state.highestStreak
             }
           }
@@ -109,10 +133,10 @@ export class FillInTheBlankKana extends Component {
         }
       }
 
-      //Sets the current streak with the updated streak (not highest just current)
-      this.setState({
-        currentStreak: newStreak
-      });
+      // //Sets the current streak with the updated streak (not highest just current)
+      // this.setState({
+      //   currentStreak: newStreak
+      // });
     } else {
       //WRONG ANSWER
 
@@ -124,7 +148,7 @@ export class FillInTheBlankKana extends Component {
     }
 
     // reloads the page
-    window.location.reload(false);
+    // window.location.reload(false);
   };
   render() {
     //Styling

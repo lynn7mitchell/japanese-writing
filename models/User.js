@@ -20,11 +20,17 @@ var UserSchema = new Schema({
     },
     katakana:{
         multipleChoice:{
+            current:{
+                type: Number
+            },
             highest:{
                 type: Number
             }
         },
         fillInTheBlank:{
+            current:{
+                type: Number
+            },
             highest:{
                 type: Number
             }
@@ -35,11 +41,17 @@ var UserSchema = new Schema({
     },
     hiragana:{
         multipleChoice:{
+            current:{
+                type: Number
+            },
             highest:{
                 type: Number
             }
         },
         fillInTheBlank:{
+            current:{
+                type: Number
+            },
             highest:{
                 type: Number
             }
@@ -50,11 +62,17 @@ var UserSchema = new Schema({
     },
     kanji:{
         multipleChoice:{
+            current:{
+                type: Number
+            },
             highest:{
                 type: Number
             }
         },
         fillInTheBlank:{
+            current:{
+                type: Number
+            },
             highest:{
                 type: Number
             }
