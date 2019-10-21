@@ -91,18 +91,9 @@ export class FillInTheBlankKana extends Component {
         currentStreak: newStreak
       });
 
-      let updatedUser = {
-        katakana: {
-          fillInTheBlank: {
-            current: this.state.currentStreak,
-          }
-        }
-      };
+      
 
-      axios
-            .put("api/user", updatedUser)
-            .then(res => console.log("worked"))
-            .catch(err => console.log(err));
+      
       //Checks if the streak is higher than the highest streak
       if (newStreak > this.state.user[this.state.language].fillInTheBlank.highest) {
 
@@ -113,14 +104,14 @@ export class FillInTheBlankKana extends Component {
 
         console.log(this.currentStreak)
         //New variable to send the new streak information with a put 
-        updatedUser = {
+        let updatedUser = {
           katakana: {
             fillInTheBlank: {
               highest: newStreak,
               current: this.state.currentStreak
             }
           }
-        };
+        }
 
         //if the highest streak is more than the highest streak in the database (which it already should be) it sends a put request
         
@@ -129,6 +120,22 @@ export class FillInTheBlankKana extends Component {
             .then(res => console.log("highest", updatedUser))
             .catch(err => console.log(err));
         
+      }else{
+        let updatedUser = {
+          katakana: {
+            fillInTheBlank: {
+              highest: this.state.highestStreak,
+              current: this.state.currentStreak,
+            }
+          }
+
+        };
+
+        
+      axios
+      .put("api/user", updatedUser)
+      .then(res => console.log("worked"))
+      .catch(err => console.log(err));
       }
 
       // //Sets the current streak with the updated streak (not highest just current)
@@ -160,7 +167,7 @@ export class FillInTheBlankKana extends Component {
     }
 
     // reloads the page
-    // window.location.reload(false);
+    window.location.reload(false);
   };
   render() {
     //Styling
