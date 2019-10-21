@@ -16,6 +16,8 @@ export class FillInTheBlankKana extends Component {
   };
 
   componentWillMount() {
+
+    // Grabs user Information
     const token = localStorage.getItem("example-app");
 
     if (token) {
@@ -32,20 +34,24 @@ export class FillInTheBlankKana extends Component {
       })
       .catch(err => console.log(err.response));
 
+    // Checks the language set by the user
     if (this.state.language === "katakana") {
+
+      //Set the array to katakana.json
       let languageArray = katakana;
-      let answer =
-        languageArray[Math.floor(Math.random() * languageArray.length)];
+      //Sets a random object from katakana.json as the answer
+      let answer = languageArray[Math.floor(Math.random() * languageArray.length)];
 
       this.setState({
         languageArray,
         answer
-        // heightStreak: this.state.user.katakana.fillInTheBlank.heightStreak
       });
     } else if (this.state.language === "hiragana") {
+
+      //Sets the array to hiragana.json
       let languageArray = hiragana;
-      let answer =
-        languageArray[Math.floor(Math.random() * languageArray.length)];
+      //Sets a random object from katakana.json as the answer
+      let answer = languageArray[Math.floor(Math.random() * languageArray.length)];
 
       this.setState({
         languageArray,
@@ -54,27 +60,35 @@ export class FillInTheBlankKana extends Component {
     }
   }
 
+  //if the form field value changes it sets this.state.userAnswer to that value
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
+
+  //Submits the form
   onSubmit = e => {
+    //prevents the button from reloading the page
     e.preventDefault();
 
+    //makes sure the user's answer is lowercase and the checks if it is the correct answer
     if (this.state.userAnswer.toLowerCase() === this.state.answer.roumaji) {
-      console.log(
-        "Your answer " + this.state.userAnswer,
-        "correct answer " + this.state.answer.roumaji,
-        "correct"
-      );
+ 
+      // CORRECT ANSWER
+
+      // Variable that adds 1 to the current streak
       let newStreak = (this.state.currentStreak += 1);
 
+      //Checks if the streak is higher than the highest streak
       if (newStreak > this.state.highestStreak) {
+
+        //sets state to highest streak
         this.setState({
           highestStreak: newStreak
         });
 
+        //New variable to send the new streak information with a put 
         let updatedUser = {
           katakana: {
             fillInTheBlank: {
@@ -83,6 +97,7 @@ export class FillInTheBlankKana extends Component {
           }
         };
 
+        //if the highest streak is more than the highest streak in the database (which it already should be) it sends a put request
         if (
           this.state.highestStreak >
           this.state.user.katakana.fillInTheBlank.highest
@@ -94,16 +109,14 @@ export class FillInTheBlankKana extends Component {
         }
       }
 
+      //Sets the current streak with the updated streak (not highest just current)
       this.setState({
         currentStreak: newStreak
       });
-      console.log(this.state.streak);
     } else {
-      console.log(
-        "Your answer " + this.state.userAnswer,
-        "correct answer " + this.state.answer.roumaji,
-        "false"
-      );
+      //WRONG ANSWER
+
+      //Sets current streak to 0
       this.setState({
         streak: 0
       });
@@ -114,6 +127,7 @@ export class FillInTheBlankKana extends Component {
     window.location.reload(false);
   };
   render() {
+    //Styling
     const style = {
       main: {
         textAlign: "center",
@@ -122,12 +136,17 @@ export class FillInTheBlankKana extends Component {
     };
     return (
       <div style={style.main}>
+        {/* streak class is styled in App.css*/}
         <div className="streak">
           <h3>Highest Streak: {this.state.highestStreak}</h3>
           <h3>Current Streak: {this.state.currentStreak}</h3>
         </div>
+        {/* Answer */}
         <h1>{this.state.answer.kana}</h1>
+
+      
         <div className="container">
+          {/* Fill in the blank form field */}
           <form onSubmit={this.onSubmit}>
             <div class="row">
               <div className="input-field col s6 m4 offset-m4 offset-s3">
