@@ -27,7 +27,27 @@ export class SignUp extends Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            katakana:{
+              multipleChoice:{
+                current: 0,
+                highest: 0
+              },
+              fillInTheBlank:{
+                current: 0,
+                highest: 0
+              }
+          },
+          hiragana:{
+              multipleChoice:{
+                  current: 0,
+                  highest: 0
+              },
+              fillInTheBlank:{
+                current: 0,
+                highest: 0
+              }
+          },
         }
 
 
