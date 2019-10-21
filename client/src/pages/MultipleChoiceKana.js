@@ -25,11 +25,13 @@ export class MultipleChoiceKana extends Component {
     axios
       .get("api/user")
       .then(response => {
-        console.log(response.data)
+        console.log(response.data);
         this.setState({
           user: response.data,
-          highestStreak: response.data[this.state.language].multipleChoice.highest,
-          currentStreak: response.data[this.state.language].multipleChoice.current,
+          highestStreak:
+            response.data[this.state.language].multipleChoice.highest,
+          currentStreak:
+            response.data[this.state.language].multipleChoice.current
         });
       })
       .catch(err => console.log(err.response));
@@ -52,7 +54,7 @@ export class MultipleChoiceKana extends Component {
         choiceFunction();
 
         if (choice === answer) {
-          i--
+          i--;
 
           choiceFunction();
         } else {
@@ -136,7 +138,6 @@ export class MultipleChoiceKana extends Component {
   }
 
   onClick = e => {
-
     let userAnswer = e.target.innerHTML;
 
     if (userAnswer === this.state.answer.roumaji) {
@@ -189,8 +190,7 @@ export class MultipleChoiceKana extends Component {
             }
           }
         };
-        console.log("thisone", updatedUser)
-
+        console.log("thisone", updatedUser);
 
         axios
           .put("api/user", updatedUser)
@@ -214,7 +214,7 @@ export class MultipleChoiceKana extends Component {
           }
         }
       };
-      console.log("thisone", updatedUser)
+      console.log("thisone", updatedUser);
 
       axios
         .put("api/user", updatedUser)
@@ -232,6 +232,10 @@ export class MultipleChoiceKana extends Component {
       main: {
         textAlign: "center",
         marginTop: "25vh"
+      },
+      multipleChoice: {
+        padding: 10,
+        marginBottom: 20,
       }
     };
     return (
@@ -244,7 +248,8 @@ export class MultipleChoiceKana extends Component {
         <div className="container">
           <div className="row">
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[0].roumaji}
               onClick={this.onClick}
             >
@@ -252,7 +257,8 @@ export class MultipleChoiceKana extends Component {
               {this.state.listedAnswers[0].roumaji}
             </div>
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[1].roumaji}
               onClick={this.onClick}
             >
@@ -261,14 +267,16 @@ export class MultipleChoiceKana extends Component {
           </div>
           <div className="row">
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[2].roumaji}
               onClick={this.onClick}
             >
               {this.state.listedAnswers[2].roumaji}
             </div>
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[3].roumaji}
               onClick={this.onClick}
             >
