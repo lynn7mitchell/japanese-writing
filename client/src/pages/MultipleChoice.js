@@ -39,7 +39,7 @@ export class MultipleChoice extends Component {
                 }
               }}
             >
-              <div className="col s4">
+              <div className="col s6">
                 <h2>Roumaji</h2>
               </div>
             </Link>
@@ -51,15 +51,15 @@ export class MultipleChoice extends Component {
                 }
               }}
             >
-              <div className="col s4">
+              <div className="col s6">
                 <h2>Kana</h2>
               </div>
             </Link>
-            <Link to="">
+            {/* <Link to="">
               <div className="col s4">
                 <h2>Both</h2>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

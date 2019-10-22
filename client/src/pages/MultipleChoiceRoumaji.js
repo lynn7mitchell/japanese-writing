@@ -10,8 +10,10 @@ export class MultipleChoiceKana extends Component {
     language: this.props.history.location.state.language,
     languageArray: [],
     answer: {},
-    choices: [],
-    listedAnswers: []
+    user: {},
+    userAnswer: "",
+    currentStreak: 0,
+    highestStreak: 0
   };
 
   componentWillMount() {
@@ -54,6 +56,7 @@ export class MultipleChoiceKana extends Component {
 
         if (choice === answer) {
           i--;
+
           choiceFunction();
         } else {
           choices.push(choice);
@@ -134,6 +137,7 @@ export class MultipleChoiceKana extends Component {
       });
     }
   }
+
   onClick = e => {
     let userAnswer = e.target.innerHTML;
 
@@ -164,7 +168,7 @@ export class MultipleChoiceKana extends Component {
         console.log(this.currentStreak);
         //New variable to send the new streak information with a put
         let updatedUser = {
-          katakana: {
+          [this.state.language]: {
             multipleChoice: {
               highest: newStreak,
               current: this.state.currentStreak
@@ -180,13 +184,14 @@ export class MultipleChoiceKana extends Component {
           .catch(err => console.log(err));
       } else {
         let updatedUser = {
-          katakana: {
+          [this.state.language]: {
             multipleChoice: {
               highest: this.state.highestStreak,
               current: this.state.currentStreak
             }
           }
         };
+        console.log("thisone", updatedUser);
 
         axios
           .put("api/user", updatedUser)
@@ -203,13 +208,14 @@ export class MultipleChoiceKana extends Component {
       });
 
       let updatedUser = {
-        katakana: {
+        [this.state.language]: {
           multipleChoice: {
             highest: this.state.highestStreak,
             current: 0
           }
         }
       };
+      console.log("thisone", updatedUser);
 
       axios
         .put("api/user", updatedUser)
@@ -227,6 +233,10 @@ export class MultipleChoiceKana extends Component {
       main: {
         textAlign: "center",
         marginTop: "25vh"
+      },
+      multipleChoice: {
+        padding: 10,
+        marginBottom: 20
       }
     };
     return (
@@ -239,7 +249,6 @@ export class MultipleChoiceKana extends Component {
         >
           <i className="material-icons back-button">arrow_back</i>
         </Link>
-
         <div className="streak">
           <h3>Highest Streak: {this.state.highestStreak}</h3>
           <h3>Current Streak: {this.state.currentStreak}</h3>
@@ -248,7 +257,8 @@ export class MultipleChoiceKana extends Component {
         <div className="container">
           <div className="row">
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 offset-m2 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[0].kana}
               onClick={this.onClick}
             >
@@ -256,7 +266,8 @@ export class MultipleChoiceKana extends Component {
               {this.state.listedAnswers[0].kana}
             </div>
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[1].kana}
               onClick={this.onClick}
             >
@@ -265,14 +276,16 @@ export class MultipleChoiceKana extends Component {
           </div>
           <div className="row">
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 offset-m2 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[2].kana}
               onClick={this.onClick}
             >
               {this.state.listedAnswers[2].kana}
             </div>
             <div
-              className="col s4 container-outline"
+              className="col m4 s12 container-outline"
+              style={style.multipleChoice}
               name={this.state.listedAnswers[3].kana}
               onClick={this.onClick}
             >

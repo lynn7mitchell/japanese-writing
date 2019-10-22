@@ -11,7 +11,7 @@ export class Dashboard extends Component {
     };
     return (
       <div style={style.main}>
-      <i className="material-icons account-icon">account_circle</i>
+      {/* <i className="material-icons account-icon">account_circle</i> */}
         <h1>Choose A Writing System</h1>
         <div className="container">
           <div className="row">
