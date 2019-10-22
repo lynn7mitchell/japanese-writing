@@ -3,59 +3,54 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export class SignUp extends Component {
+  state = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  };
 
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
 
+  onSubmit = e => {
+    e.preventDefault();
 
-    state={
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: ""
-    }
-
-
-    onChange = e =>{
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-
-    onSubmit = e =>{
-        e.preventDefault();
-
-        const newUser={
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-            password: this.state.password,
-            katakana:{
-              multipleChoice:{
-                current: 0,
-                highest: 0
-              },
-              fillInTheBlank:{
-                current: 0,
-                highest: 0
-              }
-          },
-          hiragana:{
-              multipleChoice:{
-                  current: 0,
-                  highest: 0
-              },
-              fillInTheBlank:{
-                current: 0,
-                highest: 0
-              }
-          },
+    const newUser = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      katakana: {
+        multipleChoice: {
+          current: 0,
+          highest: 0
+        },
+        fillInTheBlank: {
+          current: 0,
+          highest: 0
         }
+      },
+      hiragana: {
+        multipleChoice: {
+          current: 0,
+          highest: 0
+        },
+        fillInTheBlank: {
+          current: 0,
+          highest: 0
+        }
+      }
+    };
 
-
-        axios.post('api/user', newUser)
-        .then(console.log(newUser))
-        .catch(err => console.log(err))
-    }
+    axios
+      .post("api/user", newUser)
+      .then(console.log(newUser))
+      .catch(err => console.log(err));
+  };
 
   render() {
     const styles = {
@@ -64,13 +59,19 @@ export class SignUp extends Component {
         margin: "0 auto",
         paddingBottom: "15px",
         width: "28vw"
-
+      },
+      main: {
+        textAlign: "center",
+        marginTop: "25vh"
       }
     };
     return (
-      <div>
-        <Link to={{pathname:"/"}}><i className="material-icons back-button">arrow_back</i></Link>
+      <div style={styles.main}>
+        <Link to={{ pathname: "/" }}>
+          <i className="material-icons back-button">arrow_back</i>
+        </Link>
         <div className="container">
+          <h1>Sign Up</h1>
           <div className="row">
             <form className="col s12" onSubmit={this.onSubmit}>
               <div className="row">
@@ -92,7 +93,6 @@ export class SignUp extends Component {
                     type="text"
                     className="validate"
                     name="lastName"
-
                     onChange={this.onChange}
                   />
                   <label htmlFor="first_name">Last Name</label>
@@ -107,7 +107,6 @@ export class SignUp extends Component {
                     type="email"
                     className="validate"
                     name="email"
-
                     onChange={this.onChange}
                   />
                   <label htmlFor="email">Email</label>
@@ -122,7 +121,6 @@ export class SignUp extends Component {
                     type="password"
                     className="validate"
                     name="password"
-
                     onChange={this.onChange}
                   />
                   <label htmlFor="password">Password</label>

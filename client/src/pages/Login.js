@@ -73,6 +73,13 @@ export class Login extends Component {
           color: "#cc0000",
           fontSize: "0.8rem",
           margin: 0
+        },
+        main: {
+          textAlign: "center",
+          marginTop: "25vh"
+        },
+        signupLink:{
+          color: "#26a69a"
         }
     };
 
@@ -82,9 +89,10 @@ export class Login extends Component {
       return <Redirect to="/dashboard"/>
     }
     return (
-      <div>
+      <div style={styles.main}>
         <Link to={{pathname:"/"}}><i className="material-icons back-button">arrow_back</i></Link>
         <div className="container">
+          <h1>Log In</h1>
           <div className="row">
             <form className="col s12" onSubmit={this.onSubmit}>
               <div className="row">
@@ -121,7 +129,7 @@ export class Login extends Component {
                 </button>
               </div>
               <div className="row">
-                <p>Don't have an account? <a href="/SignUp">Click here to sign up!</a></p>
+                <p>Don't have an account? <a href="/SignUp"  style={styles.signupLink}>Click here to sign up!</a></p>
               </div>
             </form>
           </div>
