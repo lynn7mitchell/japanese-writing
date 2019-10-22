@@ -14,6 +14,7 @@ import MultipleChoice from "./pages/MultipleChoice";
 import MultipleChoiceKana from "./pages/MultipleChoiceKana";
 import MultipleChoiceRoumaji from "./pages/MultipleChoiceRoumaji";
 import FillInTheBlankKana from "./pages/FillInTheBlankKana";
+import AccountSettings from "./pages/AccountSettings";
 
 export class App extends Component {
   render() {
@@ -32,6 +33,7 @@ export class App extends Component {
             <PrivateRoute exact path="/multiple-choice-kana" component={MultipleChoiceKana} />
             <PrivateRoute exact path="/multiple-choice-roumaji" component={MultipleChoiceRoumaji} />
             <PrivateRoute exact path="/fill-in-the-blank-kana" component={FillInTheBlankKana} />
+            <PrivateRoute exact path="/account-settings" component={AccountSettings} />
             <Route exact component={NoMatch} />
           </Switch>
         </Router>

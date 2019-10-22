@@ -7,7 +7,7 @@ export class NoMatch extends Component {
       <div>
         <Link
           to={{
-            pathname: "home",
+            pathname: "/",
           }}
         >
           <i className="material-icons back-button">arrow_back</i>

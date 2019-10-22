@@ -69,7 +69,7 @@ export class SignUp extends Component {
     };
     return (
       <div>
-        <Link to={{pathname:"home"}}><i className="material-icons back-button">arrow_back</i></Link>
+        <Link to={{pathname:"/"}}><i className="material-icons back-button">arrow_back</i></Link>
         <div className="container">
           <div className="row">
             <form className="col s12" onSubmit={this.onSubmit}>
