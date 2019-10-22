@@ -6,7 +6,6 @@ import NoMatch from "./pages/NoMatch";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
-import Settings from "./pages/Settings"
 
 import Home from "./pages/Home";
 import LanguageDashboard from "./pages/LanguageDashboard"
@@ -27,7 +26,6 @@ export class App extends Component {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/login" component={Login}/>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <PrivateRoute exact path="/settings" component={Settings} />
             <PrivateRoute exact path="/language-dashboard" component={LanguageDashboard} />
             <PrivateRoute exact path="/multiple-choice" component={MultipleChoice} />
             <PrivateRoute exact path="/multiple-choice-kana" component={MultipleChoiceKana} />
