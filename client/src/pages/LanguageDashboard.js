@@ -57,11 +57,11 @@ export class LanguageDashboard extends Component {
         <h1>Choose A Study Mode</h1>
         <div className="container">
           <div className="row">
-            <Link to="">
+            {/* <Link to="">
               <div className="col s4">
                 <h2>Study Chart</h2>
               </div>
-            </Link>
+            </Link> */}
             <Link
               to={{
                 pathname: "/multiple-choice",
@@ -70,7 +70,7 @@ export class LanguageDashboard extends Component {
                 }
               }}
             >
-              <div className="col s4">
+              <div className="col s6">
                 <h2>Multiple Choice</h2>
               </div>
             </Link>
@@ -82,7 +82,7 @@ export class LanguageDashboard extends Component {
                 }
               }}
             >
-              <div className="col s4">
+              <div className="col s6">
                 <h2>Fill in The Blank</h2>
               </div>
             </Link>

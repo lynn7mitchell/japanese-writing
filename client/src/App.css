@@ -8,6 +8,7 @@
 }
 
 body {
+  background-color:#6d8798;
   background: url("../src/images/main-background.png") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -84,4 +85,5 @@ button {
   .multiple-choice-item{
     font-size: 20px;
   }
+  
 }
