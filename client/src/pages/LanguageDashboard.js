@@ -1,9 +1,36 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import setAuthToken from "../utils/setAuthtoken";
+import axios from "axios";
 
 export class LanguageDashboard extends Component {
   state = {
-    language: this.props.history.location.state.language
+    language: this.props.history.location.state.language,
+    user:{}
+  };
+  
+  componentWillMount() {
+    const token = localStorage.getItem("example-app");
+
+    if (token) {
+      setAuthToken(token);
+    }
+
+    axios
+      .get("api/user")
+      .then(response => {
+        console.log(response.data);
+        this.setState({
+          user: response.data
+        });
+      })
+      .catch(err => console.log(err.response));
+  }
+  handleLogout = () => {
+    localStorage.removeItem("example-app");
+    this.setState({
+      redirect: true
+    });
   };
   render() {
     const style = {
@@ -14,6 +41,11 @@ export class LanguageDashboard extends Component {
     };
     return (
       <div style={style.main}>
+        <Link to="/">
+          <button className="logout-button" onClick={this.handleLogout}>
+            Log Out
+          </button>
+        </Link>
         <Link
           to={{
             pathname: "dashboard",
