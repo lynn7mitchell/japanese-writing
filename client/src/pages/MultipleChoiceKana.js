@@ -257,7 +257,7 @@ export class MultipleChoiceKana extends Component {
         <div className="container">
           <div className="row">
             <div
-              className="col m4 s12 offset-m2 container-outline"
+              className="col m4 s12 offset-m2 container-outline multiple-choice-item"
               style={style.multipleChoice}
               name={this.state.listedAnswers[0].roumaji}
               onClick={this.onClick}
@@ -266,7 +266,7 @@ export class MultipleChoiceKana extends Component {
               {this.state.listedAnswers[0].roumaji}
             </div>
             <div
-              className="col m4 s12 container-outline"
+              className="col m4 s12 container-outline multiple-choice-item"
               style={style.multipleChoice}
               name={this.state.listedAnswers[1].roumaji}
               onClick={this.onClick}
@@ -276,7 +276,7 @@ export class MultipleChoiceKana extends Component {
           </div>
           <div className="row">
             <div
-              className="col m4 s12 offset-m2 container-outline"
+              className="col m4 s12 offset-m2 container-outline multiple-choice-item"
               style={style.multipleChoice}
               name={this.state.listedAnswers[2].roumaji}
               onClick={this.onClick}
@@ -284,7 +284,7 @@ export class MultipleChoiceKana extends Component {
               {this.state.listedAnswers[2].roumaji}
             </div>
             <div
-              className="col m4 s12 container-outline"
+              className="col m4 s12 container-outline multiple-choice-item"
               style={style.multipleChoice}
               name={this.state.listedAnswers[3].roumaji}
               onClick={this.onClick}

@@ -73,9 +73,15 @@ button {
 
 @media only screen and (max-width: 600px) {
   h1{
-    font-size: 62px;
+    font-size: 50px;
+  }
+  h2{
+    font-size: 25px;
   }
   h3{
-    font-size: 22px;
+    font-size: 25px;
+  }
+  .multiple-choice-item{
+    font-size: 20px;
   }
 }
