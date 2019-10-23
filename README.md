@@ -22,3 +22,4 @@ This App was created to help people practice the Japanese writing systems Hiraga
 - Heroku
 
 # Screenshots
+![alt text](./client/src/images/home.png)
