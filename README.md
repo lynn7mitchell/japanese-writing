@@ -6,7 +6,7 @@ Live Link: https://japanese-writing.herokuapp.com/
 
 This App was created to help people practice the Japanese writing systems Hiragana and Katakana.
 
-#Built Using
+# Built Using
 
 - HTML
 - CSS
