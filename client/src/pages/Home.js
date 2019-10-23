@@ -19,7 +19,7 @@ export class Home extends Component {
     return (
       <div style={style.main}>
         <h1>Japanese Writing</h1>
-        <h2>Learn Japanese Katakana, Hiragana, and Kanji</h2>
+        <h2>Learn Japanese Katakana and Hiragana</h2>
         <Link to={"/login"}><button style={style.button}>Log In</button></Link>
         <Link to={"/signup"}><button style={style.button} > Sign Up</button></Link>
       </div>
