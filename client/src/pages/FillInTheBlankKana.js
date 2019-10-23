@@ -71,7 +71,7 @@ export class FillInTheBlankKana extends Component {
   //if the form field value changes it sets this.state.userAnswer to that value
   onChange = e => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value.toLowerCase()
     });
   };
 
@@ -82,7 +82,7 @@ export class FillInTheBlankKana extends Component {
     e.preventDefault();
 
     //makes sure the user's answer is lowercase and the checks if it is the correct answer
-    if (this.state.userAnswer.toLowerCase() === this.state.answer.roumaji) {
+    if (this.state.userAnswer === this.state.answer.roumaji) {
       // CORRECT ANSWER
 
       // Variable that adds 1 to the current streak
@@ -93,7 +93,8 @@ export class FillInTheBlankKana extends Component {
       console.log(this.state.answer);
       //sets state to current streak
       this.setState({
-        currentStreak: newStreak
+        currentStreak: newStreak,
+        rightOrWrong: "You got it right!"
       });
 
       //Checks if the streak is higher than the highest streak
