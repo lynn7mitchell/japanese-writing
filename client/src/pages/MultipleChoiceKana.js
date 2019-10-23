@@ -13,7 +13,8 @@ export class MultipleChoiceKana extends Component {
     user: {},
     userAnswer: "",
     currentStreak: 0,
-    highestStreak: 0
+    highestStreak: 0,
+    rightOrWrong: ""
   };
 
   componentWillMount() {
@@ -141,6 +142,10 @@ export class MultipleChoiceKana extends Component {
   onClick = e => {
     let userAnswer = e.target.innerHTML;
 
+    this.setState({
+      userAnswer: userAnswer
+    })
+
     if (userAnswer === this.state.answer.roumaji) {
       console.log("true");
       // CORRECT ANSWER
@@ -153,7 +158,8 @@ export class MultipleChoiceKana extends Component {
       console.log(this.state.answer);
       //sets state to current streak
       this.setState({
-        currentStreak: newStreak
+        currentStreak: newStreak,
+        rightOrWrong: "You got it right!"
       });
 
       //Checks if the streak is higher than the highest streak
@@ -204,7 +210,8 @@ export class MultipleChoiceKana extends Component {
 
       //Sets current streak to 0
       this.setState({
-        currentStreak: 0
+        currentStreak: 0,
+        rightOrWrong: "You got it Wrong!"
       });
 
       let updatedUser = {
@@ -224,9 +231,13 @@ export class MultipleChoiceKana extends Component {
       console.log(this.state.streak);
     }
 
+  };
+
+  modalClose = e =>{
+
     // reloads the page
     window.location.reload(false);
-  };
+  }
 
   render() {
     const style = {
@@ -237,7 +248,7 @@ export class MultipleChoiceKana extends Component {
       multipleChoice: {
         padding: 10,
         marginBottom: 20
-      }
+      },
     };
     return (
       <div style={style.main}>
@@ -257,7 +268,8 @@ export class MultipleChoiceKana extends Component {
         <div className="container">
           <div className="row">
             <div
-              className="col m4 s12 offset-m2 container-outline multiple-choice-item"
+              className="col m4 s12 offset-m2 container-outline multiple-choice-item modal-trigger"
+              href="#modal1"
               style={style.multipleChoice}
               name={this.state.listedAnswers[0].roumaji}
               onClick={this.onClick}
@@ -266,7 +278,8 @@ export class MultipleChoiceKana extends Component {
               {this.state.listedAnswers[0].roumaji}
             </div>
             <div
-              className="col m4 s12 container-outline multiple-choice-item"
+              className="col m4 s12 container-outline multiple-choice-item modal-trigger"
+              href="#modal1"
               style={style.multipleChoice}
               name={this.state.listedAnswers[1].roumaji}
               onClick={this.onClick}
@@ -276,7 +289,8 @@ export class MultipleChoiceKana extends Component {
           </div>
           <div className="row">
             <div
-              className="col m4 s12 offset-m2 container-outline multiple-choice-item"
+              className="col m4 s12 offset-m2 container-outline multiple-choice-item modal-trigger"
+              href="#modal1"
               style={style.multipleChoice}
               name={this.state.listedAnswers[2].roumaji}
               onClick={this.onClick}
@@ -284,13 +298,29 @@ export class MultipleChoiceKana extends Component {
               {this.state.listedAnswers[2].roumaji}
             </div>
             <div
-              className="col m4 s12 container-outline multiple-choice-item"
+              className="col m4 s12 container-outline multiple-choice-item modal-trigger"
+              href="#modal1"
               style={style.multipleChoice}
               name={this.state.listedAnswers[3].roumaji}
               onClick={this.onClick}
             >
               {this.state.listedAnswers[3].roumaji}
             </div>
+          </div>
+        </div>
+
+        {/* MODAL */}
+
+        <div id="modal1" className="modal" >
+          <div className="modal-content">
+            <h4>{this.state.rightOrWrong}</h4>
+            <p>You chose {this.state.userAnswer}</p>
+            <p>The correct answer was {this.state.answer.roumaji}</p>
+          </div>
+          <div className="modal-footer">
+            <a onClick={this.modalClose}className="modal-close waves-effect waves-green btn-flat">
+              Okay
+            </a>
           </div>
         </div>
       </div>
