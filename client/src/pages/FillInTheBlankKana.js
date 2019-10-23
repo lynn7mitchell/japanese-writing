@@ -13,7 +13,8 @@ export class FillInTheBlankKana extends Component {
     user: {},
     userAnswer: "",
     currentStreak: 0,
-    highestStreak: 0
+    highestStreak: 0,
+    rightOrWrong: ""
   };
 
   componentWillMount() {
@@ -72,9 +73,10 @@ export class FillInTheBlankKana extends Component {
     });
   };
 
-  //Submits the form
-  onSubmit = e => {
-    //prevents the button from reloading the page
+  
+  onClick = e => {
+        //prevents the button from reloading the page
+
     e.preventDefault();
 
     //makes sure the user's answer is lowercase and the checks if it is the correct answer
@@ -143,7 +145,8 @@ export class FillInTheBlankKana extends Component {
 
       //Sets current streak to 0
       this.setState({
-        currentStreak: 0
+        currentStreak: 0,
+        rightOrWrong: "You got it wrong!"
       });
 
       let updatedUser = {
@@ -161,7 +164,10 @@ export class FillInTheBlankKana extends Component {
         .catch(err => console.log(err));
       console.log(this.state.streak);
     }
-
+    
+    
+  };
+  modalClose = e => {
     // reloads the page
     window.location.reload(false);
   };
@@ -206,12 +212,35 @@ export class FillInTheBlankKana extends Component {
                 <label className="active" for="user-guess">
                   Your Answer
                 </label>
-                <button style={style.button} type="submit">
+                <button
+                onClick={this.onClick}
+                  style={style.button}
+                  type="submit"
+                  className="modal-trigger"
+                  href="#modal1"
+                >
                   Submit
                 </button>
               </div>
             </div>
           </form>
+        </div>
+        {/* MODAL */}
+
+        <div id="modal1" className="modal">
+          <div className="modal-content">
+            <h4>{this.state.rightOrWrong}</h4>
+            <p>You chose {this.state.userAnswer}</p>
+            <p>The correct answer was {this.state.answer.roumaji}</p>
+          </div>
+          <div className="modal-footer">
+            <a
+              onClick={this.modalClose}
+              className="modal-close waves-effect waves-green btn-flat"
+            >
+              Okay
+            </a>
+          </div>
         </div>
       </div>
     );
