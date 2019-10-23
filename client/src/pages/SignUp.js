@@ -50,6 +50,8 @@ export class SignUp extends Component {
       .post("api/user", newUser)
       .then(console.log(newUser))
       .catch(err => console.log(err));
+
+      alert("Thank you for signing up!")
   };
 
   render() {

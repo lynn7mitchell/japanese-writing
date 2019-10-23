@@ -18,7 +18,7 @@ import AccountSettings from "./pages/AccountSettings";
 export class App extends Component {
   render() {
     return (
-      <div>
+      <div className="main">
         
         <Router>
           <Switch>
