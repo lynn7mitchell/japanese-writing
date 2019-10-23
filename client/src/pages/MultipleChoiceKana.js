@@ -4,6 +4,7 @@ import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 import katakana from "../katakana.json";
 import hiragana from "../hiragana.json";
+import { Modal } from "react-materialize";
 
 export class MultipleChoiceKana extends Component {
   state = {
@@ -144,7 +145,7 @@ export class MultipleChoiceKana extends Component {
 
     this.setState({
       userAnswer: userAnswer
-    })
+    });
 
     if (userAnswer === this.state.answer.roumaji) {
       console.log("true");
@@ -211,7 +212,7 @@ export class MultipleChoiceKana extends Component {
       //Sets current streak to 0
       this.setState({
         currentStreak: 0,
-        rightOrWrong: "You got it Wrong!"
+        rightOrWrong: "You got it wrong!"
       });
 
       let updatedUser = {
@@ -230,14 +231,12 @@ export class MultipleChoiceKana extends Component {
         .catch(err => console.log(err));
       console.log(this.state.streak);
     }
-
   };
 
-  modalClose = e =>{
-
+  modalClose = e => {
     // reloads the page
     window.location.reload(false);
-  }
+  };
 
   render() {
     const style = {
@@ -248,7 +247,7 @@ export class MultipleChoiceKana extends Component {
       multipleChoice: {
         padding: 10,
         marginBottom: 20
-      },
+      }
     };
     return (
       <div style={style.main}>
@@ -309,20 +308,19 @@ export class MultipleChoiceKana extends Component {
           </div>
         </div>
 
-        {/* MODAL */}
-
-        <div id="modal1" className="modal" >
+        <Modal id="modal1" className="modal">
           <div className="modal-content">
             <h4>{this.state.rightOrWrong}</h4>
             <p>You chose {this.state.userAnswer}</p>
             <p>The correct answer was {this.state.answer.roumaji}</p>
-          </div>
-          <div className="modal-footer">
-            <a onClick={this.modalClose}className="modal-close waves-effect waves-green btn-flat">
+            <a
+              onClick={this.modalClose}
+              className="modal-close waves-effect waves-green btn-flat"
+            >
               Okay
             </a>
           </div>
-        </div>
+        </Modal>
       </div>
     );
   }

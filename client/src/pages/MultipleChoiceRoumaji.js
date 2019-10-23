@@ -4,6 +4,8 @@ import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 import katakana from "../katakana.json";
 import hiragana from "../hiragana.json";
+import { Modal } from "react-materialize";
+
 
 export class MultipleChoiceKana extends Component {
   state = {
@@ -211,7 +213,7 @@ export class MultipleChoiceKana extends Component {
       //Sets current streak to 0
       this.setState({
         currentStreak: 0,
-        rightOrWrong: "You got it right!"
+        rightOrWrong: "You got it wrong!"
 
       });
 
@@ -310,21 +312,20 @@ export class MultipleChoiceKana extends Component {
           </div>
         </div>
 
-         {/* MODAL */}
-
-         <div id="modal1" className="modal" >
+        <Modal id="modal1" className="modal">
           <div className="modal-content">
             <h4>{this.state.rightOrWrong}</h4>
             <p>You chose {this.state.userAnswer}</p>
             <p>The correct answer was {this.state.answer.kana}</p>
-          </div>
-          <div className="modal-footer">
-            <a onClick={this.modalClose}className="modal-close waves-effect waves-green btn-flat">
+            <a
+              onClick={this.modalClose}
+              className="modal-close waves-effect waves-green btn-flat"
+            >
               Okay
             </a>
           </div>
+        </Modal>
         </div>
-      </div>
     );
   }
 }

@@ -4,6 +4,8 @@ import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
 import katakana from "../katakana.json";
 import hiragana from "../hiragana.json";
+import { Modal } from "react-materialize";
+
 
 export class FillInTheBlankKana extends Component {
   state = {
@@ -225,15 +227,11 @@ export class FillInTheBlankKana extends Component {
             </div>
           </form>
         </div>
-        {/* MODAL */}
-
-        <div id="modal1" className="modal">
+        <Modal id="modal1" className="modal">
           <div className="modal-content">
             <h4>{this.state.rightOrWrong}</h4>
             <p>You chose {this.state.userAnswer}</p>
             <p>The correct answer was {this.state.answer.roumaji}</p>
-          </div>
-          <div className="modal-footer">
             <a
               onClick={this.modalClose}
               className="modal-close waves-effect waves-green btn-flat"
@@ -241,7 +239,7 @@ export class FillInTheBlankKana extends Component {
               Okay
             </a>
           </div>
-        </div>
+        </Modal>
       </div>
     );
   }

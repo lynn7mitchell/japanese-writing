@@ -74,6 +74,16 @@ button {
 .modal, .modal-footer{
   background: lightblue !important;
 }
+
+.modal button{
+  display: none;
+}
+
+.modal-close{
+  position: absolute;
+  bottom: 2vh;
+  right: 2vh;
+}
 @media only screen and (max-width: 600px) {
   h1{
     font-size: 50px;
