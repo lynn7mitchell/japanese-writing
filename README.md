@@ -24,7 +24,7 @@ This App was created to help people practice the Japanese writing systems Hiraga
 # Screenshots
 
 ## Home
-![Home](./client/src/images/home)
+![Home](./client/src/images/home.png)
 
 ## Language Dashboard
 ![Language Dashboard](./client/src/images/language-dashboard.png)
