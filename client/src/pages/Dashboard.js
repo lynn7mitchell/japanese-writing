@@ -17,7 +17,6 @@ export class Dashboard extends Component {
     axios
       .get("api/user")
       .then(response => {
-        console.log(response.data);
         this.setState({
           user: response.data
         });

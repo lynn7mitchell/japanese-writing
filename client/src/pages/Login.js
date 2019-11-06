@@ -38,7 +38,6 @@ export class Login extends Component {
       password: this.state.password
     };
 
-    console.log("new user", newUser);
 
     axios
       .post("/api/user/login", newUser)
@@ -53,7 +52,6 @@ export class Login extends Component {
           redirect: true,
           errors: {}
         });
-        console.log(response.data);
       })
       .catch(err =>
         this.setState({
