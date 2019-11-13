@@ -72,6 +72,7 @@ export class MultipleChoice extends Component {
             >
               <div className="col s6">
                 <h2>Roumaji</h2>
+                <p>Shown english letters and you guess the kana ("symbol")</p>
               </div>
             </Link>
             <Link
@@ -84,6 +85,7 @@ export class MultipleChoice extends Component {
             >
               <div className="col s6">
                 <h2>Kana</h2>
+                <p>Shown kana ("symbol") and you guess the english letters</p>
               </div>
             </Link>
             {/* <Link to="">
