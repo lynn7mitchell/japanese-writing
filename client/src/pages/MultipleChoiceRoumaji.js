@@ -250,7 +250,8 @@ export class MultipleChoiceKana extends Component {
       },
       multipleChoice: {
         padding: 10,
-        marginBottom: 20
+        marginBottom: 20,
+        fontSize: 25
       }
     };
     return (
