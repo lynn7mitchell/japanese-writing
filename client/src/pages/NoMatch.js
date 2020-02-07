@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+// 404 page
 export class NoMatch extends Component {
   render() {
     return (

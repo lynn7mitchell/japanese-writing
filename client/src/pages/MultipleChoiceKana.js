@@ -260,8 +260,8 @@ export class MultipleChoiceKana extends Component {
           <i className="material-icons back-button">arrow_back</i>
         </Link>
         <div className="streak">
-          <h3>Highest Streak: {this.state.highestStreak}</h3>
-          <h3>Current Streak: {this.state.currentStreak}</h3>
+          <h4>Highest Streak: {this.state.highestStreak}</h4>
+          <h4>Current Streak: {this.state.currentStreak}</h4>
         </div>
         <h1>{this.state.answer.kana}</h1>
         <div className="container">
