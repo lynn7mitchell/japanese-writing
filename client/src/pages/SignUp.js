@@ -3,20 +3,24 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 export class SignUp extends Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: ""
-  };
+  constructor() {
+    super();
+    this.state = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      errors: {},
+    };
+  }
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const newUser = {
@@ -27,31 +31,40 @@ export class SignUp extends Component {
       katakana: {
         multipleChoice: {
           current: 0,
-          highest: 0
+          highest: 0,
         },
         fillInTheBlank: {
           current: 0,
-          highest: 0
-        }
+          highest: 0,
+        },
       },
       hiragana: {
         multipleChoice: {
           current: 0,
-          highest: 0
+          highest: 0,
         },
         fillInTheBlank: {
           current: 0,
-          highest: 0
-        }
-      }
+          highest: 0,
+        },
+      },
     };
 
     axios
       .post("api/user", newUser)
-      .then(console.log("Thanks for signing up"))
-      .catch(err => console.log(err));
-
-      alert("Thank you for signing up!")
+      .then((res) =>{
+        this.setState({
+          errors: {
+            errors: 'none'
+          },
+        })
+        alert("Thanks for signing up!")
+      })
+      .catch((err) =>
+        this.setState({
+          errors: err.response.data,
+        })
+      );
   };
 
   render() {
@@ -60,13 +73,15 @@ export class SignUp extends Component {
         display: "block",
         margin: "0 auto",
         paddingBottom: "15px",
-        width: "28vw"
+        width: "28vw",
       },
       main: {
         textAlign: "center",
-        marginTop: "25vh"
-      }
+        marginTop: "25vh",
+      },
     };
+    const { errors } = this.state;
+
     return (
       <div style={styles.main}>
         <Link to={{ pathname: "/" }}>
@@ -99,6 +114,8 @@ export class SignUp extends Component {
                   />
                   <label htmlFor="first_name">Last Name</label>
                 </div>
+                {errors.email && <div style={styles.error}>{errors.email}</div>}
+
               </div>
 
               <div className="row">
