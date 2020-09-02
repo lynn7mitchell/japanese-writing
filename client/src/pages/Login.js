@@ -11,7 +11,7 @@ export class Login extends Component {
       redirect: false,
       email: "",
       password: "",
-      errors: {}
+      errors: {},
     };
   }
   componentDidMount() {
@@ -19,29 +19,28 @@ export class Login extends Component {
 
     if (authenticate(token)) {
       this.setState({
-        redirect: true
+        redirect: true,
       });
     }
   }
 
-  onChange = e => {
+  onChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  onSubmit = e => {
+  onSubmit = (e) => {
     e.preventDefault();
 
     const newUser = {
       email: this.state.email,
-      password: this.state.password
+      password: this.state.password,
     };
-
 
     axios
       .post("/api/user/login", newUser)
-      .then(response => {
+      .then((response) => {
         if (response.data.token) {
           const { token } = response.data;
 
@@ -50,12 +49,12 @@ export class Login extends Component {
         }
         this.setState({
           redirect: true,
-          errors: {}
+          errors: {},
         });
       })
-      .catch(err =>
+      .catch((err) =>
         this.setState({
-          errors: err.response.data
+          errors: err.response.data,
         })
       );
   };
@@ -64,20 +63,20 @@ export class Login extends Component {
       logo: {
         display: "block",
         margin: "0 auto",
-        width: "28vw"
+        width: "28vw",
       },
       error: {
         color: "#cc0000",
         fontSize: "0.8rem",
-        margin: 0
+        margin: 0,
       },
       main: {
         textAlign: "center",
-        marginTop: "25vh"
+        marginTop: "25vh",
       },
       signupLink: {
-        color: "#26a69a"
-      }
+        color: "#26a69a",
+      },
     };
 
     const { errors } = this.state;
@@ -145,8 +144,8 @@ export class Login extends Component {
               </div>
               <div className="row">
                 <p>Demo Login:</p>
-                <p>Email: test@gmail.com</p>
-                <p>Password: test</p>
+                <p>Email: demotest@gmail.com</p>
+                <p>Password: demotest</p>
               </div>
             </form>
           </div>
