@@ -78,7 +78,8 @@ export class LanguageDashboard extends Component {
               to={{
                 pathname: "/fill-in-the-blank-kana",
                 state: {
-                  language: this.state.language
+                  language: this.state.language,
+                  user: this.state.user
                 }
               }}
             >
