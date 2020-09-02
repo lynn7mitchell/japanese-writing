@@ -12,7 +12,7 @@ export class FillInTheBlankKana extends Component {
     language: this.props.history.location.state.language,
     languageArray: [],
     answer: {},
-    user: this.props.history.location.state.user,
+    user: {},
     userAnswer: "",
     currentStreak: 0,
     highestStreak: 0,
@@ -108,26 +108,14 @@ export class FillInTheBlankKana extends Component {
 
         console.log(this.currentStreak);
         //New variable to send the new streak information with a put
-        let updatedUser
-       if(this.state.language === katakana){
         let updatedUser = {
-          katakana: {
+          [this.state.language]: {
             fillInTheBlank: {
               highest: newStreak,
               current: this.state.currentStreak
             }
           }
         };
-       }else if (this.state.language === hiragana){
-        let updatedUser = {
-          hiragana: {
-            fillInTheBlank: {
-              highest: newStreak,
-              current: this.state.currentStreak
-            }
-          }
-        };
-       }
 
         //if the highest streak is more than the highest streak in the database (which it already should be) it sends a put request
 
@@ -136,8 +124,6 @@ export class FillInTheBlankKana extends Component {
           .then(res => console.log("highest", updatedUser))
           .catch(err => console.log(err));
       } else {
-        let updatedUser
-       if(this.state.language === katakana){
         let updatedUser = {
           katakana: {
             fillInTheBlank: {
@@ -146,16 +132,6 @@ export class FillInTheBlankKana extends Component {
             }
           }
         };
-       }else if (this.state.language === hiragana){
-        let updatedUser = {
-          hiragana: {
-            fillInTheBlank: {
-              highest:  this.state.highestStreak,
-              current: this.state.currentStreak
-            }
-          }
-        };
-       }
 
         axios
           .put("api/user", updatedUser)
@@ -176,26 +152,14 @@ export class FillInTheBlankKana extends Component {
         rightOrWrong: "You got it wrong!"
       });
 
-      let updatedUser  
-      if(this.state.language === katakana){
-        let updatedUser = {
-          katakana: {
-            fillInTheBlank: {
-              highest: this.state.highestStreak,
-              current: this.state.currentStreak
-            }
+      let updatedUser = {
+        katakana: {
+          fillInTheBlank: {
+            highest: this.state.highestStreak,
+            current: 0
           }
-        };
-       }else if (this.state.language === hiragana){
-        let updatedUser = {
-          hiragana: {
-            fillInTheBlank: {
-              highest:  this.state.highestStreak,
-              current: this.state.currentStreak
-            }
-          }
-        };
-       }
+        }
+      };
 
       axios
         .put("api/user", updatedUser)
@@ -230,8 +194,8 @@ export class FillInTheBlankKana extends Component {
         </Link>
 
         <div className="streak">
-          <h4>Highest Streak: {this.state.highestStreak}</h4>
-          <h4>Current Streak: {this.state.currentStreak}</h4>
+          <h3>Highest Streak: {this.state.highestStreak}</h3>
+          <h3>Current Streak: {this.state.currentStreak}</h3>
         </div>
         {/* Answer */}
         <h1>{this.state.answer.kana}</h1>
