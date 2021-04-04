@@ -1,36 +1,7 @@
-# Japanese Writing App
+# Mern Template
 
-Live Link: https://japanese-writing.herokuapp.com/
+Live Link: https://mern-template-hooks.herokuapp.com/
 
 # Purpose
 
-This App was created to help people practice the Japanese writing systems Hiragana and Katakana.
-
-# Built Using
-
-- HTML
-- CSS
-- Materialize CSS
-- JavaScript
-- React.js
-- Node.js
-- Express.js
-- Mongo DB
-- Mongoose ODM
-- Axios
-- React-router-dom
-- Heroku
-
-# Screenshots
-
-## Home
-![Home](./client/src/images/home.png)
-
-## Language Dashboard
-![Language Dashboard](./client/src/images/language-dashboard.png)
-
-## Multiple Choice (kana)
-![Multiple Choice (kana)](./client/src/images/multiplechoicekana.png)
-
-## Fill In The Blank
-![Fill In The Blank](./client/src/images/fillintheblank.png)
+Easy way to start a MERN Stack project

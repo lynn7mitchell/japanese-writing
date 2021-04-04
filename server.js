@@ -1,17 +1,13 @@
 var express = require("express");
 var path = require("path")
 var mongoose = require("mongoose");
-const axios = require("axios")
 const passport = require('passport')
+// .env
 require('dotenv').config()
+
 // Initialize Express
 var app = express();
 var PORT = process.env.PORT || 3001;
-
-// if (process.env.NODE_ENV === "production"){
-//   app.use(express.static("client/build"))
-// }
-
 
 
 // Require all models

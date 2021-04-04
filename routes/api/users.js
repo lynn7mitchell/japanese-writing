@@ -1,11 +1,16 @@
 module.exports = function (app) {
-    const express = require("express");
     const db = require("../../models");
-    const axios = require("axios");
     const passport = require('passport');
     const bcrypt = require('bcryptjs');
     const jwt = require('jsonwebtoken');
     const keys = require('../../config/keys')
+    
+    // Test Routes
+    app.get("/users/noAuthTest", (req, res)=>{
+        res.json({
+            msg: "Users route works (no auth)"
+        })
+    })
 
     app.get("/users/test", passport.authenticate('jwt', { session: false }), (req, res) => {
         res.json({
@@ -43,10 +48,7 @@ module.exports = function (app) {
                         firstName: req.body.firstName,
                         lastName: req.body.lastName,
                         email: req.body.email,
-                        password: req.body.password,
-                        katakana: req.body.katakana,
-                        hiragana: req.body.hiragana,
-                        kanji: req.body.kanji
+                        password: req.body.password
                     }
                     console.log(newUser)
                     bcrypt.genSalt(10, (err, salt) => {
@@ -123,7 +125,7 @@ module.exports = function (app) {
                         }
                     }).catch(err => console.log(err))
 
-            }).catch(err => console.log(err));
+            }).catch(console.log('here'));
 
 
   

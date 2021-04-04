@@ -17,75 +17,7 @@ var UserSchema = new Schema({
     password:{
         type: String,
         required: true
-    },
-    katakana:{
-        multipleChoice:{
-            current:{
-                type: Number
-            },
-            highest:{
-                type: Number
-            }
-        },
-        fillInTheBlank:{
-            current:{
-                type: Number
-            },
-            highest:{
-                type: Number
-            }
-        },
-        unlocked:{
-            type: Boolean
-        }
-    },
-    hiragana:{
-        multipleChoice:{
-            current:{
-                type: Number
-            },
-            highest:{
-                type: Number
-            }
-        },
-        fillInTheBlank:{
-            current:{
-                type: Number
-            },
-            highest:{
-                type: Number
-            }
-        },
-        unlocked:{
-            type: Boolean
-        }
-    },
-    kanji:{
-        multipleChoice:{
-            current:{
-                type: Number
-            },
-            highest:{
-                type: Number
-            }
-        },
-        fillInTheBlank:{
-            current:{
-                type: Number
-            },
-            highest:{
-                type: Number
-            }
-        },
-        unlocked:{
-            type: Boolean
-        }
     }
-    // image:{
-
-    // }
-
-
 })
 
 const User = mongoose.model("User", UserSchema);
