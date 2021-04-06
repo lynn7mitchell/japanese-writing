@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div>
+    <div className='bg-purple-300'>
       <h1>MERN TEMPLATE</h1>
       <Link to={"/login"}>
         <button>Log In</button>

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./index.css";
 import PrivateRoute from "./utils/PrivateRoute";
 import NoMatch from "./pages/NoMatch";
 import Dashboard from "./pages/Dashboard";
