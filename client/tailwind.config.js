@@ -1,11 +1,18 @@
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "m-plus-rounded": ['"M PLUS Rounded 1c"', "sans-serif"],
+      },
+      width: {
+        "98": "98%",
+      }
+    },
   },
   variants: {
     extend: {},
   },
   plugins: [],
-}
+};
