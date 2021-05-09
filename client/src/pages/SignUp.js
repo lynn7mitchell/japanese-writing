@@ -90,30 +90,38 @@ export default function SignUp() {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <div>
-      <Link to={{ pathname: "/" }}>
+    <div className="bg-gray-900 h-screen w-screen flex flex-col items-center content-center justify-center font-bold font-m-plus-rounded text-white">
+    <Link to={{ pathname: "/" }} className="absolute top-5 left-5">
         <i className="material-icons back-button">arrow_back</i>
       </Link>
-      <h3>SIGN UP</h3>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <h3 className="lg:text-6xl text-4xl font-bold font-m-plus-rounded pb-1 ">
+Sign Up</h3>
+      <form onSubmit={(e) => onSubmit(e)}         className="flex flex-col justify-between items-center w-2/3 mt-20 lg:w-1/2"
+>
       {errors.email === "This email already exists" ? <p>This email already exists</p> : ''}
       {errors.password ? <p>{errors.password}</p> : ''}
          {/* First Name */}
+         <label htmlFor="first name" className="self-start">
+          First Name
+        </label>
          <input
           type="text"
           id="firstName"
-          className="form-feild"
+          className="mb-5 p-1 w-full rounded-md"
           name="firstName"
           placeholder="First Name"
           value={formData.firstName}
           onChange={(e) => onChange(e)}
         />
 
-         {/* Email */}
+         {/* Last Name */}
+         <label htmlFor="last name" className="self-start">
+          Last Name
+        </label>
          <input
           type="text"
           id="lastName"
-          className="form-feild"
+          className="mb-5 p-1 w-full rounded-md"
           name="lastName"
           placeholder="Last Name"
           value={formData.lastName}
@@ -121,10 +129,13 @@ export default function SignUp() {
         />
 
         {/* Email */}
+        <label htmlFor="email" className="self-start">
+          E-mail
+        </label>
         <input
           type="email"
           id="email"
-          className="form-feild"
+          className="mb-5 p-1 w-full rounded-md"
           name="email"
           placeholder="Email"
           value={formData.email}
@@ -132,10 +143,13 @@ export default function SignUp() {
         />
 
         {/* Password */}
+        <label htmlFor="password" className="self-start">
+          Password
+        </label>
         <input
           type="password"
           id="password"
-          className="form-feild"
+          className="mb-5 p-1 w-full rounded-md"
           name="password"
           placeholder="password"
           value={formData.password}
@@ -143,17 +157,21 @@ export default function SignUp() {
         />
 
         {/* Confirm Password */}
+        <label htmlFor="email" className="self-start">
+          Confirm Password
+        </label>
         <input
           type="password"
           id="Confirm Password"
-          className="form-feild"
+          className="mb-5 p-1 w-full rounded-md"
           name="confirmPassword"
           placeholder="confirmPassword"
           value={formData.confirmPassword}
           onChange={(e) => onChange(e)}
         />
 
-        <button type="submit" name="action">
+        <button type="submit" name="action"           className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-2/3 font-bold font-m-plus-rounded"
+>
           SIGN UP
         </button>
       </form>
