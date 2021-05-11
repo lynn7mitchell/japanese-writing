@@ -107,7 +107,7 @@ Sign Up</h3>
          <input
           type="text"
           id="firstName"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="firstName"
           placeholder="First Name"
           value={formData.firstName}
@@ -121,7 +121,7 @@ Sign Up</h3>
          <input
           type="text"
           id="lastName"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="lastName"
           placeholder="Last Name"
           value={formData.lastName}
@@ -135,7 +135,7 @@ Sign Up</h3>
         <input
           type="email"
           id="email"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="email"
           placeholder="Email"
           value={formData.email}
@@ -149,7 +149,7 @@ Sign Up</h3>
         <input
           type="password"
           id="password"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="password"
           placeholder="password"
           value={formData.password}
@@ -163,7 +163,7 @@ Sign Up</h3>
         <input
           type="password"
           id="Confirm Password"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="confirmPassword"
           placeholder="confirmPassword"
           value={formData.confirmPassword}

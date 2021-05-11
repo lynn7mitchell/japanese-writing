@@ -81,7 +81,7 @@ export default function Login() {
           type="email"
           id="email"
           type="email"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="email"
           placeholder="Email"
           value={formData.email}
@@ -96,7 +96,7 @@ export default function Login() {
           type="password"
           id="password"
           type="password"
-          className="mb-5 p-1 w-full rounded-md"
+          className="mb-5 p-1 w-full rounded-md text-gray-700"
           name="password"
           placeholder="password"
           value={formData.password}
