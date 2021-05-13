@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
+import Nav from "../components/Nav";
 
 export default function StudyMode(props) {
   const [redirect, setRedirect] = useState(false);
-
   const languageSystem = props.location.languageSystem;
-
   const handleLogout = () => {
     localStorage.removeItem("example-app");
     setRedirect(true);
@@ -16,15 +15,7 @@ export default function StudyMode(props) {
   }
   return (
     <div className="bg-gray-900 h-screen w-screen flex flex-col items-center content-center justify-center font-bold font-m-plus-rounded text-white">
-      <button
-        className="absolute top-5 right-2 bg-blue-700 lg:w-36 w-28 text-m rounded-lg p-2 text-white font-bold font-m-plus-rounded"
-        onClick={(e) => handleLogout(e)}
-      >
-        Log Out
-      </button>
-      <Link to={{ pathname: "/dashboard" }} className="absolute top-5 left-5">
-        <i className="material-icons back-button">arrow_back</i>
-      </Link>
+      <Nav />
       <h1 className="lg:text-6xl text-3xl font-bold font-m-plus-rounded pb-1 mb-20">
         Choose A Writing System
       </h1>
