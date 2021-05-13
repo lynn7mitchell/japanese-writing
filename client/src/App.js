@@ -10,7 +10,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Dashboard from "./pages/Dashboard";
 import StudyMode from "./pages/StudyMode";
-
+import MultipleChoice from "./pages/MultipleChoice";
+import FillInTheBlank from "./pages/FillInTheBlank";
 function App() {
   return (
     <div className="App">
@@ -21,6 +22,17 @@ function App() {
           <Route exact path="/login" component={Login} />
           <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <PrivateRoute exact path="/study-mode" component={StudyMode} />
+          <PrivateRoute
+            exact
+            path="/multiple-choice"
+            component={MultipleChoice}
+          />
+          <PrivateRoute
+            exact
+            path="/fill-in-the-blank"
+            component={FillInTheBlank}
+          />
+
           {/* 404 page */}
           <Route exact component={NoMatch} />
         </Switch>

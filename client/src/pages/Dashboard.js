@@ -48,9 +48,7 @@ export default function Dashboard() {
         <Link
           to={{
             pathname: "/study-mode",
-            state: {
-              language: "katakana",
-            },
+            languageSystem: "katakana",
           }}
           className="p-7"
         >
@@ -60,9 +58,7 @@ export default function Dashboard() {
         <Link
           to={{
             pathname: "/study-mode",
-            state: {
-              language: "hiragana",
-            },
+            languageSystem: "hiragana",
           }}
           className="p-7"
         >
