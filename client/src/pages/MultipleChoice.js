@@ -20,7 +20,7 @@ export default function MultipleChoice(props) {
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({});
   const languageSystem = props.location.languageSystem;
-  const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([])
+  const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [currentStreak, setCurrentStreak] = useState(0);
   const [highestStreak, setHighestStreak] = useState(0);
@@ -47,7 +47,7 @@ export default function MultipleChoice(props) {
 
     if (languageSystem === "katakana") {
       for (let i = 4; options.length < 4; i++) {
-       let option =
+        let option =
           katakanaCharacters[
             Math.floor(Math.random() * katakanaCharacters.length)
           ];
@@ -56,39 +56,46 @@ export default function MultipleChoice(props) {
           options.push(option);
         }
 
-        console.log("here")
+        console.log("here");
       }
 
-      console.log(options)
-
-      
-    }else{
+      console.log(options);
+    } else {
       // if language system is hiragana
       for (let i = 4; options.length < 4; i++) {
         let option =
-           hiraganaCharacters[
-             Math.floor(Math.random() * hiraganaCharacters.length)
-           ];
- 
-         if (!options.includes(option)) {
-           options.push(option);
-         }
-       }
-       console.log(options)
+          hiraganaCharacters[
+            Math.floor(Math.random() * hiraganaCharacters.length)
+          ];
 
+        if (!options.includes(option)) {
+          options.push(option);
+        }
+      }
+      console.log(options);
     }
 
-    
     // FINAL OPTIONS AND ANSWER
-    setMultipleChoiceOptions(options)
-    setCorrectAnswer(options[Math.floor(Math.random() * options.length)].roumaji)
-
-
+    setMultipleChoiceOptions(options);
+    setCorrectAnswer(
+      options[Math.floor(Math.random() * options.length)]
+    );
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("example-app");
     setRedirect(true);
+  };
+
+  const onUserAnswer = (e) => {
+    let userAnswer = e.target.outerText
+
+    if(userAnswer === correctAnswer.kana){
+      console.log("CORRECT " + correctAnswer.kana + " " + userAnswer)
+    }else{
+      console.log("WRONG " + correctAnswer.kana + " " + userAnswer)
+
+    }
   };
 
   if (redirect) {
@@ -97,21 +104,24 @@ export default function MultipleChoice(props) {
   return (
     <div className="bg-gray-900 h-screen w-screen flex flex-col items-center content-center justify-center font-bold font-m-plus-rounded text-white">
       <Nav />
-      <div className="text-7xl md:text-8xl">{correctAnswer}</div>
+      <div className="text-7xl md:text-8xl">{correctAnswer.roumaji}</div>
       <div className="flex flex-wrap justify-evenly md:justify-around">
-        {multipleChoiceOptions.map(option =>{
-          return(
-          <Card character={option.kana}/>
-          )
+        {multipleChoiceOptions.map((option) => {
+          return (
+            <div
+              onClick={(e) => onUserAnswer(e)}
+              className="rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700 active:bg-green-700"
+              key={option.kana}
+            >
+              {option.kana}
+            </div>
+          );
         })}
       </div>
 
       {/* <button className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 mt-9 text-white w-11/12 font-bold font-m-plus-rounded">
             AM I RIGHT?
           </button> */}
-
     </div>
-
-    
   );
 }
