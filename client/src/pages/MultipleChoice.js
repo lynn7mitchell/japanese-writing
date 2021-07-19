@@ -92,9 +92,13 @@ export default function MultipleChoice(props) {
 
     if(userAnswer === correctAnswer.kana){
       console.log("CORRECT " + correctAnswer.kana + " " + userAnswer)
+      e.target.classList.remove("hover:bg-blue-700")
+      e.target.classList.add("bg-green-500")
     }else{
       console.log("WRONG " + correctAnswer.kana + " " + userAnswer)
-
+      e.target.classList.remove("hover:bg-blue-700")
+      e.target.classList.add("bg-red-500")
+      document.getElementById(correctAnswer.kana).classList.add("bg-green-500")
     }
   };
 
@@ -110,8 +114,9 @@ export default function MultipleChoice(props) {
           return (
             <div
               onClick={(e) => onUserAnswer(e)}
-              className="rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700 active:bg-green-700"
+              className="rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700"
               key={option.kana}
+              id={option.kana}
             >
               {option.kana}
             </div>

@@ -46,9 +46,7 @@ export default function Home() {
           </button></div>
         </Link>
       </div>
-      {/* <p>Demo Login:</p>
-      <p>Email: code7sandbox@gmail.com</p>
-      <p>Password: DemoTest#1</p> */}
+     
     </div>
   );
 }
