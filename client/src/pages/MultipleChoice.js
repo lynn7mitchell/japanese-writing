@@ -12,11 +12,14 @@ import React, { useState, useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import setAuthToken from "../utils/setAuthtoken";
 import axios from "axios";
+import { useHistory } from "react-router";
 import katakanaCharacters from "../japanese-characters/katakana.json";
 import hiraganaCharacters from "../japanese-characters/hiragana.json";
 import Nav from "../components/Nav";
 import Card from "../components/Card";
 export default function MultipleChoice(props) {
+  const history = useHistory();
+
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({});
   const languageSystem = props.location.languageSystem;
@@ -77,9 +80,7 @@ export default function MultipleChoice(props) {
 
     // FINAL OPTIONS AND ANSWER
     setMultipleChoiceOptions(options);
-    setCorrectAnswer(
-      options[Math.floor(Math.random() * options.length)]
-    );
+    setCorrectAnswer(options[Math.floor(Math.random() * options.length)]);
   }, []);
 
   const handleLogout = () => {
@@ -88,19 +89,27 @@ export default function MultipleChoice(props) {
   };
 
   const onUserAnswer = (e) => {
-    let userAnswer = e.target.outerText
+    let userAnswer = e.target.outerText;
 
-    if(userAnswer === correctAnswer.kana){
-      console.log("CORRECT " + correctAnswer.kana + " " + userAnswer)
-      e.target.classList.remove("hover:bg-blue-700")
-      e.target.classList.add("bg-green-500")
-    }else{
-      console.log("WRONG " + correctAnswer.kana + " " + userAnswer)
-      e.target.classList.remove("hover:bg-blue-700")
-      e.target.classList.add("bg-red-500")
-      document.getElementById(correctAnswer.kana).classList.add("bg-green-500")
+    if (userAnswer === correctAnswer.kana) {
+      console.log("CORRECT " + correctAnswer.kana + " " + userAnswer);
+      e.target.classList.remove("hover:bg-blue-700");
+      e.target.classList.add("bg-green-500");
+    } else {
+      console.log("WRONG " + correctAnswer.kana + " " + userAnswer);
+      e.target.classList.remove("hover:bg-blue-700");
+      e.target.classList.add("bg-red-500");
+      document.getElementById(correctAnswer.kana).classList.add("bg-green-500");
     }
+
+    document.getElementById("next_button").classList.remove("hidden");
   };
+
+
+  const refresh = e =>{
+    history.go(0)
+  }
+
 
   if (redirect) {
     return <Redirect to="/" />;
@@ -109,7 +118,7 @@ export default function MultipleChoice(props) {
     <div className="bg-gray-900 h-screen w-screen flex flex-col items-center content-center justify-center font-bold font-m-plus-rounded text-white">
       <Nav />
       <div className="text-7xl md:text-8xl">{correctAnswer.roumaji}</div>
-      <div className="flex flex-wrap justify-evenly md:justify-around">
+      <div className="flex flex-wrap justify-evenly md:justify-around pb-20">
         {multipleChoiceOptions.map((option) => {
           return (
             <div
@@ -124,9 +133,13 @@ export default function MultipleChoice(props) {
         })}
       </div>
 
-      {/* <button className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 mt-9 text-white w-11/12 font-bold font-m-plus-rounded">
-            AM I RIGHT?
-          </button> */}
+      <button
+        id="next_button"
+        className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 -mt-11 text-white w-11/12 font-bold font-m-plus-rounded hidden"
+        onClick={(e)=>{refresh(e)}}
+      >
+        Next
+      </button>
     </div>
   );
 }
