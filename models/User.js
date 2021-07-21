@@ -29,17 +29,14 @@ var UserSchema = new Schema({
         default: 0,
       },
     },
-    // fillInTheBlank:{
-    //     current:{
-    //         type: Number
-    //     },
-    //     highest:{
-    //         type: Number
-    //     }
-    // },
-    // unlocked:{
-    //     type: Boolean
-    // }
+    fillInTheBlank:{
+        current:{
+            type: Number
+        },
+        highest:{
+            type: Number
+        }
+    },
   },
   hiragana: {
     multipleChoice: {
@@ -52,17 +49,14 @@ var UserSchema = new Schema({
         default: 0,
       },
     },
-    // fillInTheBlank:{
-    //     current:{
-    //         type: Number
-    //     },
-    //     highest:{
-    //         type: Number
-    //     }
-    // },
-    // unlocked:{
-    //     type: Boolean
-    // }
+    fillInTheBlank:{
+        current:{
+            type: Number
+        },
+        highest:{
+            type: Number
+        }
+    },
   },
 });
 

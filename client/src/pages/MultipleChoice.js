@@ -171,6 +171,11 @@ export default function MultipleChoice(props) {
   return (
     <div className="bg-gray-900 h-screen w-screen flex flex-col items-center content-center justify-center font-bold font-m-plus-rounded text-white">
       <Nav />
+      <div className="flex self-center justify-around md:selft-start md:justfy-start md:flex-col lg:w-2/3 md:w-4/5 m-4 mb-7 w-screen">
+        <h4 className="text-lg">Current Streak: {currentStreak}</h4>
+        <h4 className="text-lg">Highest Streak: {highestStreak}</h4>
+
+      </div>
       <div className="text-7xl md:text-8xl">{correctAnswer.roumaji}</div>
       <div className="flex flex-wrap justify-evenly md:justify-around pb-20">
         {multipleChoiceOptions.map((option) => {
