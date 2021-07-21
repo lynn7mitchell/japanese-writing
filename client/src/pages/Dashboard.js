@@ -47,7 +47,7 @@ export default function Dashboard() {
       <div className="flex justify-between lg:w-2/5">
         <Link
           to={{
-            pathname: "/study-mode",
+            pathname: "/multiple-choice",
             languageSystem: "katakana",
           }}
           className="p-7"
@@ -57,7 +57,7 @@ export default function Dashboard() {
         </Link>
         <Link
           to={{
-            pathname: "/study-mode",
+            pathname: "/multiple-choice",
             languageSystem: "hiragana",
           }}
           className="p-7"
