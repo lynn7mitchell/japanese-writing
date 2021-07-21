@@ -22,7 +22,7 @@ export default function MultipleChoice(props) {
 
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({});
-  const [languageSystem, setLanguageSystem] = useState('');
+  const [languageSystem, setLanguageSystem] = useState("");
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [currentStreak, setCurrentStreak] = useState(0);
@@ -33,13 +33,18 @@ export default function MultipleChoice(props) {
     // gets the bearer token to validate the user that is logged in
     const token = localStorage.getItem("example-app");
 
+    let languageSystem = "";
 
-    if(props.location.languageSystem !== undefined){
-    setLanguageSystem(props.location.languageSystem)
-    localStorage.setItem("languageSystem", props.location.languageSystem)
-    }else{
-      setLanguageSystem(localStorage.getItem("languageSystem"))
+    if (props.location.languageSystem !== undefined) {
+      setLanguageSystem(props.location.languageSystem);
+      languageSystem = props.location.languageSystem;
+      localStorage.setItem("languageSystem", props.location.languageSystem);
+    } else {
+      setLanguageSystem(localStorage.getItem("languageSystem"));
+      languageSystem = localStorage.getItem("languageSystem");
     }
+
+    console.log(languageSystem);
 
     if (token) {
       setAuthToken(token);
@@ -49,6 +54,8 @@ export default function MultipleChoice(props) {
       .get("/api/user")
       .then((res) => {
         setUser(res.data);
+        setCurrentStreak(res.data[languageSystem].multipleChoice.current);
+        setHighestStreak(res.data[languageSystem].multipleChoice.highest);
         console.log(res.data);
       })
       .catch((err) => {
@@ -105,15 +112,50 @@ export default function MultipleChoice(props) {
       // Style change on user answer
       e.target.classList.remove("hover:bg-blue-700");
       e.target.classList.add("bg-green-500");
+      console.log(user[languageSystem].multipleChoice.current);
 
-      console.log(languageSystem)
-      // setUser({...user, [languageSystem]multipleChoice.current: languageSystem.multipleChoice.current += 1})
+      let newCurrentStreak = currentStreak + 1;
+      let newHighestStreak;
+      if (newCurrentStreak >= highestStreak) {
+        newHighestStreak = newCurrentStreak;
+      }
+
+      let newUser = {
+        ...user,
+        [languageSystem]: {
+          multipleChoice: {
+            ...user[languageSystem].multipleChoice,
+            current: newCurrentStreak,
+            highest: newHighestStreak,
+          },
+        },
+      };
+
+      axios.put("api/user", newUser).catch((err) => {
+        console.error(err.res.data);
+      });
     } else {
       console.log("WRONG " + correctAnswer.kana + " " + userAnswer);
       // Style change on user answer
       e.target.classList.remove("hover:bg-blue-700");
       e.target.classList.add("bg-red-500");
       document.getElementById(correctAnswer.kana).classList.add("bg-green-500");
+
+      let newCurrentStreak = 0;
+
+      let newUser = {
+        ...user,
+        [languageSystem]: {
+          multipleChoice: {
+            ...user[languageSystem].multipleChoice,
+            current: newCurrentStreak,
+          },
+        },
+      };
+
+      axios.put("api/user", newUser).catch((err) => {
+        console.error(err.res.data);
+      });
     }
 
     document.getElementById("next_button").classList.remove("hidden");
