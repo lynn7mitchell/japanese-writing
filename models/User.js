@@ -22,9 +22,11 @@ var UserSchema = new Schema({
     multipleChoice: {
       current: {
         type: Number,
+        default: 0,
       },
       highest: {
         type: Number,
+        default: 0,
       },
     },
     // fillInTheBlank:{
@@ -43,9 +45,11 @@ var UserSchema = new Schema({
     multipleChoice: {
       current: {
         type: Number,
+        default: 0,
       },
       highest: {
         type: Number,
+        default: 0,
       },
     },
     // fillInTheBlank:{

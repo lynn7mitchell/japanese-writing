@@ -6,6 +6,7 @@ export default function Nav(props) {
 
   const handleLogout = () => {
     localStorage.removeItem("example-app");
+    localStorage.clear()
     setRedirect(true);
   };
 

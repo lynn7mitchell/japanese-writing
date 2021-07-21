@@ -22,7 +22,7 @@ export default function MultipleChoice(props) {
 
   const [redirect, setRedirect] = useState(false);
   const [user, setUser] = useState({});
-  const languageSystem = props.location.languageSystem;
+  const [languageSystem, setLanguageSystem] = useState('');
   const [multipleChoiceOptions, setMultipleChoiceOptions] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [currentStreak, setCurrentStreak] = useState(0);
@@ -33,6 +33,14 @@ export default function MultipleChoice(props) {
     // gets the bearer token to validate the user that is logged in
     const token = localStorage.getItem("example-app");
 
+
+    if(props.location.languageSystem !== undefined){
+    setLanguageSystem(props.location.languageSystem)
+    localStorage.setItem("languageSystem", props.location.languageSystem)
+    }else{
+      setLanguageSystem(localStorage.getItem("languageSystem"))
+    }
+
     if (token) {
       setAuthToken(token);
     }
@@ -41,6 +49,7 @@ export default function MultipleChoice(props) {
       .get("/api/user")
       .then((res) => {
         setUser(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
         console.error(err.res.data);
@@ -93,10 +102,15 @@ export default function MultipleChoice(props) {
 
     if (userAnswer === correctAnswer.kana) {
       console.log("CORRECT " + correctAnswer.kana + " " + userAnswer);
+      // Style change on user answer
       e.target.classList.remove("hover:bg-blue-700");
       e.target.classList.add("bg-green-500");
+
+      console.log(languageSystem)
+      // setUser({...user, [languageSystem]multipleChoice.current: languageSystem.multipleChoice.current += 1})
     } else {
       console.log("WRONG " + correctAnswer.kana + " " + userAnswer);
+      // Style change on user answer
       e.target.classList.remove("hover:bg-blue-700");
       e.target.classList.add("bg-red-500");
       document.getElementById(correctAnswer.kana).classList.add("bg-green-500");
@@ -105,11 +119,9 @@ export default function MultipleChoice(props) {
     document.getElementById("next_button").classList.remove("hidden");
   };
 
-
-  const refresh = e =>{
-    history.go(0)
-  }
-
+  const refresh = (e) => {
+    history.go(0);
+  };
 
   if (redirect) {
     return <Redirect to="/" />;
@@ -136,7 +148,9 @@ export default function MultipleChoice(props) {
       <button
         id="next_button"
         className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 -mt-11 text-white w-11/12 font-bold font-m-plus-rounded hidden"
-        onClick={(e)=>{refresh(e)}}
+        onClick={(e) => {
+          refresh(e);
+        }}
       >
         Next
       </button>
