@@ -34,14 +34,14 @@ export default function Home() {
           </svg>
         </div>
         <div className="pt-12">
-          <button className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-screen font-bold font-m-plus-rounded">
+          <button className="bg-blue-700 hover:bg-blue-800 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-screen font-bold font-m-plus-rounded">
             LOG IN
           </button></div>
         </Link>
         <Link to={"/signup"}>
         <div className="lg:pt-12">
 
-          <button className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-screen font-bold font-m-plus-rounded">
+          <button className="bg-blue-700 hover:bg-blue-800 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-screen font-bold font-m-plus-rounded">
             SIGN UP
           </button></div>
         </Link>

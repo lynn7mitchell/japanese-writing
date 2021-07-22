@@ -112,11 +112,16 @@ export default function MultipleChoice(props) {
     if (!alreadyClicked) {
       let userAnswer = e.target.outerText;
 
+      console.log(document.getElementsByClassName('roumaji')[0].classList)
+      for(let i = 0; i < document.getElementsByClassName('roumaji').length; i++){
+        document.getElementsByClassName('roumaji')[i].classList.remove('hidden')
+      }
+
       if (userAnswer === correctAnswer.kana) {
         console.log("CORRECT " + correctAnswer.kana + " " + userAnswer);
         // Style change on user answer
         e.target.classList.remove("hover:bg-blue-700");
-        e.target.classList.add("bg-green-500");
+       document.getElementById(correctAnswer.kana).classList.add("bg-green-500");
         console.log(user[languageSystem].multipleChoice.current);
 
         let newCurrentStreak = currentStreak + 1;
@@ -189,11 +194,14 @@ export default function MultipleChoice(props) {
           return (
             <div
               onClick={(e) => onUserAnswer(e)}
-              className="answer-options rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700"
+              className="answer-options rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700 relative" 
               key={option.kana}
               id={option.kana}
             >
-              {option.kana}
+             {option.kana}
+             <div className="roumaji text-lg hidden absolute inset-x-1/4	pt-2">{option.roumaji}</div>
+
+
             </div>
           );
         })}
@@ -201,7 +209,7 @@ export default function MultipleChoice(props) {
 
       <button
         id="next_button"
-        className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 -mt-11 text-white w-11/12 font-bold font-m-plus-rounded hidden"
+        className="bg-blue-700 hover:bg-blue-800 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 -mt-11 text-white w-11/12 font-bold font-m-plus-rounded hidden"
         onClick={(e) => {
           refresh(e);
         }}

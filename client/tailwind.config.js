@@ -14,6 +14,7 @@ module.exports = {
       width: {
         98: "98%",
       },
+      backgroundColor: ['active'],
     },
   },
   variants: {

@@ -26,21 +26,24 @@ export default function SignUp() {
     //  8 Characters, 1 uppercase Letter, 1 Lowercase letter 1 Number, and 1 Special Character
     // /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
     // found regex at https://www.w3resource.com/javascript/form/password-validation.php
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,}$/;
 
     if (passwordRegex.test(formData.password) !== true) {
       setErrors({
         password:
           "Password must be at least 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character",
       });
-      return (console.log("Password must be at least 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character",))
+      return console.log(
+        "Password must be at least 8 characters and have at least 1 uppercase, 1 lowercase, 1 number, and 1 special character"
+      );
     }
 
     if (formData.password !== formData.confirmPassword) {
       setErrors({
         password: "passwords do not match",
       });
-      return (console.log("passwords do not match"))
+      return console.log("passwords do not match");
     }
 
     const newUser = {
@@ -68,10 +71,10 @@ export default function SignUp() {
               localStorage.setItem("example-app", token);
               setAuthToken(token);
             }
-            setRedirect(true)
-              setErrors({
-                errors: {},
-              });
+            setRedirect(true);
+            setErrors({
+              errors: {},
+            });
           })
           .catch((err) => {
             console.error(err.res.data);
@@ -80,31 +83,37 @@ export default function SignUp() {
       })
       .catch((err) => {
         console.error(err.response.data);
-        setErrors(
-         err.response.data,
-        );
+        setErrors(err.response.data);
       });
-    
   };
   if (redirect) {
     return <Redirect to="/dashboard" />;
   }
   return (
     <div className="bg-gray-900 h-screen w-screen flex flex-col items-center content-center justify-center font-bold font-m-plus-rounded text-white">
-    <Link to={{ pathname: "/" }} className="absolute top-5 left-5">
+      <Link to={{ pathname: "/" }} className="absolute top-5 left-5">
         <i className="material-icons back-button">arrow_back</i>
       </Link>
       <h3 className="lg:text-6xl text-4xl font-bold font-m-plus-rounded pb-1 ">
-Sign Up</h3>
-      <form onSubmit={(e) => onSubmit(e)}         className="flex flex-col justify-between items-center w-2/3 mt-20 lg:w-1/2"
->
-      {errors.email === "This email already exists" ? <p>This email already exists</p> : ''}
-      {errors.password ? <p>{errors.password}</p> : ''}
-         {/* First Name */}
-         <label htmlFor="first name" className="self-start">
+        Sign Up
+      </h3>
+      <form
+        autocomplete="off"
+        onSubmit={(e) => onSubmit(e)}
+        className="flex flex-col justify-between items-center w-2/3 mt-20 lg:w-1/2"
+      >
+        {errors.email === "This email already exists" ? (
+          <p>This email already exists</p>
+        ) : (
+          ""
+        )}
+        {errors.password ? <p>{errors.password}</p> : ""}
+        {/* First Name */}
+        <label htmlFor="first name" className="self-start">
           First Name
         </label>
-         <input
+        <input
+          autocomplete="off"
           type="text"
           id="firstName"
           className="mb-5 p-1 w-full rounded-md text-gray-700"
@@ -114,11 +123,12 @@ Sign Up</h3>
           onChange={(e) => onChange(e)}
         />
 
-         {/* Last Name */}
-         <label htmlFor="last name" className="self-start">
+        {/* Last Name */}
+        <label htmlFor="last name" className="self-start">
           Last Name
         </label>
-         <input
+        <input
+          autocomplete="off"
           type="text"
           id="lastName"
           className="mb-5 p-1 w-full rounded-md text-gray-700"
@@ -133,6 +143,7 @@ Sign Up</h3>
           E-mail
         </label>
         <input
+          autocomplete="off"
           type="email"
           id="email"
           className="mb-5 p-1 w-full rounded-md text-gray-700"
@@ -147,6 +158,7 @@ Sign Up</h3>
           Password
         </label>
         <input
+          autocomplete="off"
           type="password"
           id="password"
           className="mb-5 p-1 w-full rounded-md text-gray-700"
@@ -161,6 +173,7 @@ Sign Up</h3>
           Confirm Password
         </label>
         <input
+          autocomplete="off"
           type="password"
           id="Confirm Password"
           className="mb-5 p-1 w-full rounded-md text-gray-700"
@@ -170,8 +183,11 @@ Sign Up</h3>
           onChange={(e) => onChange(e)}
         />
 
-        <button type="submit" name="action"           className="bg-blue-700 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-2/3 font-bold font-m-plus-rounded"
->
+        <button
+          type="submit"
+          name="action"
+          className="bg-blue-700 hover:bg-blue-800 lg:w-40 lg:mx-36 text-lg rounded-lg p-2 text-white w-2/3 font-bold font-m-plus-rounded"
+        >
           SIGN UP
         </button>
       </form>
