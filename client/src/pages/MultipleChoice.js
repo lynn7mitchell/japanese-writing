@@ -28,6 +28,8 @@ export default function MultipleChoice(props) {
   const [currentStreak, setCurrentStreak] = useState(0);
   const [highestStreak, setHighestStreak] = useState(0);
   const [isCorrect, setIsCorrect] = useState(null);
+// This is set so that the user cannot click on another answer after the initial answer
+  const [alreadyClicked, setAlreadyClicked] = useState(false);
 
   useEffect(() => {
     // gets the bearer token to validate the user that is logged in
@@ -105,60 +107,66 @@ export default function MultipleChoice(props) {
   };
 
   const onUserAnswer = (e) => {
-    let userAnswer = e.target.outerText;
+    setAlreadyClicked(true);
 
-    if (userAnswer === correctAnswer.kana) {
-      console.log("CORRECT " + correctAnswer.kana + " " + userAnswer);
-      // Style change on user answer
-      e.target.classList.remove("hover:bg-blue-700");
-      e.target.classList.add("bg-green-500");
-      console.log(user[languageSystem].multipleChoice.current);
+    if (!alreadyClicked) {
+      let userAnswer = e.target.outerText;
 
-      let newCurrentStreak = currentStreak + 1;
-      let newHighestStreak = highestStreak;
-      if (newCurrentStreak >= highestStreak) {
-        newHighestStreak = newCurrentStreak;
+      if (userAnswer === correctAnswer.kana) {
+        console.log("CORRECT " + correctAnswer.kana + " " + userAnswer);
+        // Style change on user answer
+        e.target.classList.remove("hover:bg-blue-700");
+        e.target.classList.add("bg-green-500");
+        console.log(user[languageSystem].multipleChoice.current);
+
+        let newCurrentStreak = currentStreak + 1;
+        let newHighestStreak = highestStreak;
+        if (newCurrentStreak >= highestStreak) {
+          newHighestStreak = newCurrentStreak;
+        }
+
+        let newUser = {
+          ...user,
+          [languageSystem]: {
+            multipleChoice: {
+              ...user[languageSystem].multipleChoice,
+              current: newCurrentStreak,
+              highest: newHighestStreak,
+            },
+          },
+        };
+
+        axios.put("api/user", newUser).catch((err) => {
+          console.error(err.res.data);
+        });
+      } else {
+        console.log("WRONG " + correctAnswer.kana + " " + userAnswer);
+        // Style change on user answer
+        e.target.classList.remove("hover:bg-blue-700");
+        e.target.classList.add("bg-red-500");
+        document
+          .getElementById(correctAnswer.kana)
+          .classList.add("bg-green-500");
+
+        let newCurrentStreak = 0;
+
+        let newUser = {
+          ...user,
+          [languageSystem]: {
+            multipleChoice: {
+              ...user[languageSystem].multipleChoice,
+              current: newCurrentStreak,
+            },
+          },
+        };
+
+        axios.put("api/user", newUser).catch((err) => {
+          console.error(err.res.data);
+        });
       }
 
-      let newUser = {
-        ...user,
-        [languageSystem]: {
-          multipleChoice: {
-            ...user[languageSystem].multipleChoice,
-            current: newCurrentStreak,
-            highest: newHighestStreak,
-          },
-        },
-      };
-
-      axios.put("api/user", newUser).catch((err) => {
-        console.error(err.res.data);
-      });
-    } else {
-      console.log("WRONG " + correctAnswer.kana + " " + userAnswer);
-      // Style change on user answer
-      e.target.classList.remove("hover:bg-blue-700");
-      e.target.classList.add("bg-red-500");
-      document.getElementById(correctAnswer.kana).classList.add("bg-green-500");
-
-      let newCurrentStreak = 0;
-
-      let newUser = {
-        ...user,
-        [languageSystem]: {
-          multipleChoice: {
-            ...user[languageSystem].multipleChoice,
-            current: newCurrentStreak,
-          },
-        },
-      };
-
-      axios.put("api/user", newUser).catch((err) => {
-        console.error(err.res.data);
-      });
+      document.getElementById("next_button").classList.remove("hidden");
     }
-
-    document.getElementById("next_button").classList.remove("hidden");
   };
 
   const refresh = (e) => {
@@ -174,7 +182,6 @@ export default function MultipleChoice(props) {
       <div className="flex self-center justify-around md:selft-start md:justfy-start md:flex-col lg:w-2/3 md:w-4/5 m-4 mb-7 w-screen">
         <h4 className="text-lg">Current Streak: {currentStreak}</h4>
         <h4 className="text-lg">Highest Streak: {highestStreak}</h4>
-
       </div>
       <div className="text-7xl md:text-8xl">{correctAnswer.roumaji}</div>
       <div className="flex flex-wrap justify-evenly md:justify-around pb-20">
@@ -182,7 +189,7 @@ export default function MultipleChoice(props) {
           return (
             <div
               onClick={(e) => onUserAnswer(e)}
-              className="rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700"
+              className="answer-options rounded-xl shadow-md text-center text-5xl border-4 pt-14 pb-14 w-40 mt-9 md:mx-5 hover:bg-blue-700"
               key={option.kana}
               id={option.kana}
             >
