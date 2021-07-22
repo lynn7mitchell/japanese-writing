@@ -28,7 +28,7 @@ export default function MultipleChoice(props) {
   const [currentStreak, setCurrentStreak] = useState(0);
   const [highestStreak, setHighestStreak] = useState(0);
   const [isCorrect, setIsCorrect] = useState(null);
-// This is set so that the user cannot click on another answer after the initial answer
+  // This is set so that the user cannot click on another answer after the initial answer
   const [alreadyClicked, setAlreadyClicked] = useState(false);
 
   useEffect(() => {
