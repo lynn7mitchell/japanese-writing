@@ -115,7 +115,7 @@ export default function MultipleChoice(props) {
       console.log(user[languageSystem].multipleChoice.current);
 
       let newCurrentStreak = currentStreak + 1;
-      let newHighestStreak;
+      let newHighestStreak = highestStreak;
       if (newCurrentStreak >= highestStreak) {
         newHighestStreak = newCurrentStreak;
       }
