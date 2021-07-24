@@ -2,11 +2,11 @@
 
 Live Link: https://japanese-writing.herokuapp.com/
 
-# Purpose
+## Purpose
 
 This App was created to help people practice the Japanese writing systems Hiragana and Katakana.
 
-# Built Using
+## Built Using
 
 - HTML
 - Tailwind CSS
@@ -20,16 +20,17 @@ This App was created to help people practice the Japanese writing systems Hiraga
 - React-router-dom
 - Heroku
 
-# Screenshots
+## What's it look like?
 
-## Home
-<img src="./client/src/img/home.png" width="50%">
 
-## Language Dashboard
-<img src="./client/src/img/choose.png" width="50%">
+### Home
+<img src="./client/src/img/home.PNG" width="50%">
 
-## Log In
-<img src="./client/src/img/login.png" width="50%">
+### Language Dashboard
+<img src="./client/src/img/choose.PNG" width="50%">
 
-## Multiple Choice
-<img src="./client/src/img/multiple-choice.png" width="50%">
+### Log In
+<img src="./client/src/img/login.PNG" width="50%">
+
+### Multiple Choice
+<img src="./client/src/img/multiple-choice.PNG" width="50%">
